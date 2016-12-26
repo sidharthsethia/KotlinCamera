@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MHCPanel</string>
+
+    <string name="hint_mobile">Mobile</string>
 </resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/company_logo"
+    android:layout_margin="32dp"
+    android:layout_centerInParent="true"
+    android:layout_above="@+id/button_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Med"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cords"
+            android:textSize="24sp"
+            android:textColor="@color/medcordsAccent"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="India's First Health Manager"
+        android:textSize="18sp"
+        android:id="@+id/company_tag_line_text_view"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:layout_below="@+id/title_layout"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/medcordsAccent" />
+
+
+</RelativeLayout>
