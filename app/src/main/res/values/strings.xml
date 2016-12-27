@@ -2,4 +2,9 @@
     <string name="app_name">MHCPanel</string>
 
     <string name="hint_mobile">Mobile</string>
+
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_phone">Enter valid mobile number</string>
+    <string name="err_msg_otp">Enter valid OTP</string>
 </resources>

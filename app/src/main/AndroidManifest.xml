@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".activities.SplashScreenActivity"
+            android:theme="@style/AppThemeNoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".AgentLoginActivity" />
-        <activity android:name=".AgentSignupActivity"></activity>
+            android:name=".activities.SplashActivity"
+            android:theme="@style/AppThemeNoTitleBar" />
+        <activity android:name=".activities.AgentLoginActivity"
+            android:theme="@style/AppThemeNoTitleBar"/>
+        <activity android:name=".activities.AgentSignupActivity"
+            android:theme="@style/AppThemeNoTitleBar"></activity>
     </application>
 
 </manifest>

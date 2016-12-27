@@ -1,10 +1,12 @@
-package com.medcords.mhcpanel;
+package com.medcords.mhcpanel.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.medcords.mhcpanel.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -15,7 +17,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        new PrefetchData().execute();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new PrefetchData().execute();
+            }
+        }, SPLASH_TIME_OUT);
+
+
     }
 
     private class PrefetchData extends AsyncTask<Void, Void, Void> {
@@ -29,13 +38,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            }, SPLASH_TIME_OUT);
             return null;
         }
 

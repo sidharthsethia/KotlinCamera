@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_agent_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:padding="@dimen/activity_horizontal_margin"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.medcords.mhcpanel.AgentLoginActivity">
+    tools:context="com.medcords.mhcpanel.activities.AgentLoginActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -39,9 +40,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:padding="@dimen/activity_vertical_margin"
-            android:background="@color/white"
-            android:layout_centerInParent="true"
+            app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
             <EditText
@@ -49,11 +48,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
+                android:textColor="@color/white"
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:singleLine="true"
+                android:maxLength="10"
+                android:textColorHint="@color/white"
                 android:hint="Mobile" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/login_button"
             android:layout_below="@+id/input_layout_mobile"
             android:layout_marginTop="16dp"
             style="@style/Widget.AppCompat.Button.Colored"
@@ -71,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="14sp"
-            android:layout_below="@+id/register_button"
+            android:layout_below="@+id/login_button"
             android:id="@+id/signup_text_view"
             android:textColor="@color/white"
             android:textStyle="bold"

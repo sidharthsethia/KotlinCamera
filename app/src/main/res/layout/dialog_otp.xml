@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_width="match_parent"
     android:background="@color/colorPrimaryDark"
@@ -12,6 +13,7 @@
         android:textSize="14sp"
         android:id="@+id/otp_text_view"
         android:textColor="@color/white"
+        android:fontFamily="sans-serif-condensed"
         android:padding="@dimen/activity_vertical_margin"
         android:text="Enter the OTP sent to 7023479993"
         android:layout_height="wrap_content" />
@@ -23,17 +25,22 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_below="@+id/otp_text_view"
-        android:padding="@dimen/activity_vertical_margin"
-        android:background="@color/white"
-        android:layout_centerInParent="true"
+        app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/input_otp"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:hint="Enter OTP" />
+            android:inputType="number"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:singleLine="true"
+            android:background="@drawable/apptheme_edit_text_holo_light"
+            android:maxLength="4"
+            android:textColorHint="@color/white"
+            android:hint="OTP" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

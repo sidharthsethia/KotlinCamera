@@ -1,6 +1,7 @@
-package com.medcords.mhcpanel;
+package com.medcords.mhcpanel.activities;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.medcords.mhcpanel.R;
+import com.medcords.mhcpanel.utilities.Utility;
+
 public class AgentLoginActivity extends AppCompatActivity {
 
     private RelativeLayout mOTPLayout, mLoginLayout;
@@ -17,6 +21,7 @@ public class AgentLoginActivity extends AppCompatActivity {
     private EditText mOTPEditText, mPhoneEditText;
     private ProgressBar mProgressBar;
     private TextView mResendOTPTextView, mSignupTextView;
+    private TextInputLayout inputLayoutPhone, inputLayoutOTP;
 
 
 
@@ -34,6 +39,8 @@ public class AgentLoginActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mResendOTPTextView = (TextView) findViewById(R.id.resend_otp_text_view);
         mSignupTextView = (TextView) findViewById(R.id.signup_text_view);
+        inputLayoutPhone = (TextInputLayout) findViewById(R.id.input_layout_mobile);
+        inputLayoutOTP = (TextInputLayout) findViewById(R.id.input_layout_otp);
 
         mOTPLayout.setVisibility(View.GONE);
         mLoginLayout.setVisibility(View.VISIBLE);
@@ -42,16 +49,26 @@ public class AgentLoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (!Utility.validatePhone(mPhoneEditText,inputLayoutPhone,AgentLoginActivity.this,AgentLoginActivity.this)) {
+                    return;
+                }
+
                 mLoginLayout.setVisibility(View.GONE);
                 mOTPLayout.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.GONE);
+
+
             }
         });
 
         mOTPSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                if (!Utility.validateOTP(mOTPEditText,inputLayoutOTP,AgentLoginActivity.this,AgentLoginActivity.this)) {
+                    return;
+                }
+
             }
         });
 
@@ -63,6 +80,5 @@ public class AgentLoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }
