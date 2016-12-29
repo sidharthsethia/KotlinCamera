@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -25,7 +26,7 @@ public class AgentSignupActivity extends AppCompatActivity {
     private Button mSignupButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText, mNameEditText, mEmailEditText;
     private ProgressBar mProgressBar;
-    private TextView mResendOTPTextView, mLoginTextView;
+    private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView;
     private CircularImageView mProfileImageView;
     private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPhone, inputLayoutOTP;
 
@@ -45,6 +46,7 @@ public class AgentSignupActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mResendOTPTextView = (TextView) findViewById(R.id.resend_otp_text_view);
         mLoginTextView = (TextView) findViewById(R.id.login_text_view);
+        mOTPTitleTextView = (TextView) findViewById(R.id.otp_text_view);
         mProfileImageView = (CircularImageView) findViewById(R.id.input_photo);
         inputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
@@ -55,9 +57,9 @@ public class AgentSignupActivity extends AppCompatActivity {
         mSignupLayout.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
 
-        //mNameEditText.addTextChangedListener(new SignupTextWatcher(mNameEditText));
-        //mEmailEditText.addTextChangedListener(new SignupTextWatcher(mEmailEditText));
-        //mPhoneEditText.addTextChangedListener(new SignupTextWatcher(mPhoneEditText));
+        mNameEditText.addTextChangedListener(new SignupTextWatcher(mNameEditText));
+        mEmailEditText.addTextChangedListener(new SignupTextWatcher(mEmailEditText));
+        mPhoneEditText.addTextChangedListener(new SignupTextWatcher(mPhoneEditText));
 
 
         mSignupButton.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +102,10 @@ public class AgentSignupActivity extends AppCompatActivity {
         if (!Utility.validatePhone(mPhoneEditText,inputLayoutPhone,AgentSignupActivity.this,AgentSignupActivity.this)) {
             return;
         }
+
+        String otp_title = String.format(getResources().getString(R.string.otp_title), mPhoneEditText.getText().toString().trim());
+        mOTPTitleTextView.setText(Html.fromHtml(otp_title));
+
 
         mSignupLayout.setVisibility(View.GONE);
         mOTPLayout.setVisibility(View.VISIBLE);

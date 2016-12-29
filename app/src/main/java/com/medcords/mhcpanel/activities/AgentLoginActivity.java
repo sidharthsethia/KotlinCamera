@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ public class AgentLoginActivity extends AppCompatActivity {
     private Button mLoginButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText;
     private ProgressBar mProgressBar;
-    private TextView mResendOTPTextView, mSignupTextView;
+    private TextView mResendOTPTextView, mSignupTextView, mOTPTitleTextView;
     private TextInputLayout inputLayoutPhone, inputLayoutOTP;
 
 
@@ -37,6 +38,7 @@ public class AgentLoginActivity extends AppCompatActivity {
         mOTPEditText = (EditText) findViewById(R.id.input_otp);
         mPhoneEditText = (EditText) findViewById(R.id.input_mobile);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mOTPTitleTextView = (TextView) findViewById(R.id.otp_text_view);
         mResendOTPTextView = (TextView) findViewById(R.id.resend_otp_text_view);
         mSignupTextView = (TextView) findViewById(R.id.signup_text_view);
         inputLayoutPhone = (TextInputLayout) findViewById(R.id.input_layout_mobile);
@@ -53,6 +55,9 @@ public class AgentLoginActivity extends AppCompatActivity {
                 if (!Utility.validatePhone(mPhoneEditText,inputLayoutPhone,AgentLoginActivity.this,AgentLoginActivity.this)) {
                     return;
                 }
+
+                String otp_title = String.format(getResources().getString(R.string.otp_title), mPhoneEditText.getText().toString().trim());
+                mOTPTitleTextView.setText(Html.fromHtml(otp_title));
 
                 mLoginLayout.setVisibility(View.GONE);
                 mOTPLayout.setVisibility(View.VISIBLE);
