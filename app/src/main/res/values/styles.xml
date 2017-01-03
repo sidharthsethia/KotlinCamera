@@ -16,6 +16,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppThemeDarkHint" parent="AppTheme">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+</style>
+
     <style name="error_appearance" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorDivider</item>
         <item name="android:textSize">12sp</item>

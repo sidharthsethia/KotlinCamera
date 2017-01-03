@@ -76,6 +76,10 @@ public class AgentSignupActivity extends AppCompatActivity {
                 if (!Utility.validateOTP(mOTPEditText,inputLayoutOTP,AgentSignupActivity.this,AgentSignupActivity.this)) {
                     return;
                 }
+
+                Intent i = new Intent(AgentSignupActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

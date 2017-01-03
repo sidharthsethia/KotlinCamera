@@ -74,6 +74,10 @@ public class AgentLoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                Intent i = new Intent(AgentLoginActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
             }
         });
 

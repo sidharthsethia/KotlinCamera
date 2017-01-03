@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:scrollbars="none"
+    tools:context="com.medcords.mhcpanel.activities.UserSignupActivity">
+
+    <LinearLayout
+        android:id="@+id/activity_user_signup"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/input_photo"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:civ_border_color="@color/colorDivider"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/user"
+                app:civ_border_width="2dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                app:errorTextAppearance="@style/error_appearance"
+                android:layout_below="@+id/input_photo"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/colorTextSecondary"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorTextSecondary"
+                    android:hint="Name" />
+            </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_mobile"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/input_layout_email"
+            android:layout_marginTop="8dp"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSecondary"
+                android:singleLine="true"
+                android:maxLength="10"
+                android:textColorHint="@color/colorTextSecondary"
+                android:inputType="phone"
+                android:hint="Mobile" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_dob"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/input_layout_mobile"
+            android:layout_marginTop="8dp"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSecondary"
+                android:singleLine="true"
+                android:textColorHint="@color/colorTextSecondary"
+                android:inputType="date"
+                android:hint="DOB" />
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:textSize="12sp"
+            android:id="@+id/age_unknown_checkbox"
+            android:checkMark="@color/colorPrimaryDark"
+            android:checked="false"
+            android:layout_width="match_parent"
+            android:text="Exact DOB not known."
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_age"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_below="@+id/input_layout_mobile"
+            android:layout_marginTop="8dp"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSecondary"
+                android:singleLine="true"
+                android:maxLength="3"
+                android:textColorHint="@color/colorTextSecondary"
+                android:inputType="date"
+                android:hint="Apprximate Age" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_place"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/input_layout_dob"
+                android:layout_marginTop="8dp"
+                app:errorTextAppearance="@style/error_appearance"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorTextSecondary"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorTextSecondary"
+                    android:hint="Place of Living" />
+            </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_aadhar"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/input_layout_place"
+            android:layout_marginTop="8dp"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_aadhar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSecondary"
+                android:singleLine="true"
+                android:maxLength="12"
+                android:textColorHint="@color/colorTextSecondary"
+                android:inputType="phone"
+                android:hint="Aadhar ID" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_relationship"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/input_layout_aadhar"
+            android:layout_marginTop="8dp"
+            app:errorTextAppearance="@style/error_appearance"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_relationship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSecondary"
+                android:singleLine="true"
+                android:textColorHint="@color/colorTextSecondary"
+                android:inputType="text"
+                android:hint="Relationship" />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <Button
+                android:id="@+id/register_button"
+                android:layout_below="@+id/input_layout_mobile"
+                android:layout_marginTop="16dp"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginRight="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="Register"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="14sp"
+                android:layout_below="@+id/register_button"
+                android:id="@+id/login_text_view"
+                android:textColor="@color/colorTextSecondary"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="Existing Medcords user?"
+                android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
