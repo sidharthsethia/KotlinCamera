@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -37,6 +38,7 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
     private TextInputLayout inputLayoutName, inputLayoutPlace, inputLayoutPhone, inputLayoutOTP, inputLayoutDOB, inputLayoutRelationship, inputLayoutAadhar, inputLayoutAge;
     private double latitude=-1000,longitude=-1000;
     private CheckBox ageUnknownCheckbox;
+    private RadioGroup mGenderRadioGroup;
 
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
@@ -68,6 +70,7 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
         inputLayoutAge = (TextInputLayout) findViewById(R.id.input_layout_age);
         inputLayoutOTP = (TextInputLayout) findViewById(R.id.input_layout_otp);
         ageUnknownCheckbox = (CheckBox) findViewById(R.id.age_unknown_checkbox);
+        mGenderRadioGroup = (RadioGroup) findViewById(R.id.input_gender);
 
         mRelationshipEditText.setFocusable(false);
         mPlaceOfLivingEditText.setFocusable(false);
@@ -154,6 +157,6 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
         String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         mDOBEditText.setText(date);
     }
-    
+
 
 }
