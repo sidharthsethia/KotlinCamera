@@ -24,8 +24,11 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.utilities.GPSTracker;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-public class UserSignupActivity extends AppCompatActivity {
+import java.util.Calendar;
+
+public class UserSignupActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private Button mSignupButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText, mNameEditText, mPlaceOfLivingEditText, mDOBEditText, mAadharEditText, mRelationshipEditText, mAgeEditText;
@@ -91,7 +94,16 @@ public class UserSignupActivity extends AppCompatActivity {
         mDOBEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        UserSignupActivity.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.setMaxDate(now);
+                dpd.setTitle("Select Date");
+                dpd.show(getFragmentManager(), "Datepickerdialog");
             }
         });
         mPlaceOfLivingEditText.setOnClickListener(new View.OnClickListener() {
@@ -136,4 +148,12 @@ public class UserSignupActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        mDOBEditText.setText(date);
+    }
+    
+
 }
