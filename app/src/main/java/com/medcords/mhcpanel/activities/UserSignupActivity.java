@@ -1,16 +1,21 @@
 package com.medcords.mhcpanel.activities;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -27,6 +32,7 @@ import com.medcords.mhcpanel.utilities.GPSTracker;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UserSignupActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -41,6 +47,8 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
     private RadioGroup mGenderRadioGroup;
 
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+
+    private ArrayList<String>  relationNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +140,30 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
+        mRelationshipEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setRelationList(mGenderRadioGroup.getCheckedRadioButtonId());
+                final Dialog dialog = new Dialog(UserSignupActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_list_view);
+
+                ListView lv = (ListView) dialog.findViewById(R.id.listView1);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(UserSignupActivity.this, android.R.layout.simple_list_item_1, relationNames);
+                lv.setAdapter(adapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        dialog.dismiss();
+                        mRelationshipEditText.setText(relationNames.get(i));
+                    }
+                });
+                dialog.show();
+
+            }
+        });
+
 
     }
 
@@ -156,6 +188,29 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         mDOBEditText.setText(date);
+    }
+
+    private void setRelationList(int id){
+        relationNames.clear();
+
+        relationNames.add("Self");
+
+        if (id != R.id.input_male) {
+            relationNames.add("Mother");
+            relationNames.add("Wife");
+            relationNames.add("Sister");
+            relationNames.add("Aunt");
+            relationNames.add("Daughter");
+        }
+
+        if (id != R.id.input_female) {
+            relationNames.add("Father");
+            relationNames.add("Husband");
+            relationNames.add("Brother");
+            relationNames.add("Uncle");
+            relationNames.add("Son");
+        }
+        relationNames.add("Cousin");
     }
 
 

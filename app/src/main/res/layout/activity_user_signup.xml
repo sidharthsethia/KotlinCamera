@@ -204,7 +204,7 @@
                 android:singleLine="true"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="text"
-                android:hint="Relationship" />
+                android:hint="Relation" />
         </android.support.design.widget.TextInputLayout>
 
 
