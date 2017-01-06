@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <TextView
@@ -37,7 +36,6 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:singleLine="true"
-            android:background="@drawable/apptheme_edit_text_holo_light"
             android:maxLength="4"
             android:textColorHint="@color/white"
             android:hint="OTP" />
@@ -70,7 +68,17 @@
         android:text="Didnt receive OTP? Resend."
         android:layout_height="wrap_content" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="12sp"
+        android:layout_below="@+id/resend_otp_text_view"
+        android:id="@+id/cancel_textview"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:text="Cancel"
+        android:layout_height="wrap_content" />
 
 
 

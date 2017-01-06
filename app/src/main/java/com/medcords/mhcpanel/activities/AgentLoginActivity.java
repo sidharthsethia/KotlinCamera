@@ -48,6 +48,8 @@ public class AgentLoginActivity extends AppCompatActivity {
         mLoginLayout.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
 
+        mOTPEditText.setBackgroundDrawable(getResources().getDrawable(R.drawable.apptheme_edit_text_holo_light));
+
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

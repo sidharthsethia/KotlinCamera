@@ -57,6 +57,8 @@ public class AgentSignupActivity extends AppCompatActivity {
         mSignupLayout.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
 
+        mOTPEditText.setBackgroundDrawable(getResources().getDrawable(R.drawable.apptheme_edit_text_holo_light));
+
         mNameEditText.addTextChangedListener(new SignupTextWatcher(mNameEditText));
         mEmailEditText.addTextChangedListener(new SignupTextWatcher(mEmailEditText));
         mPhoneEditText.addTextChangedListener(new SignupTextWatcher(mPhoneEditText));
