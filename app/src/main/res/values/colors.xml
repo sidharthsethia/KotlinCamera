@@ -13,4 +13,7 @@
     <color name="colorDivider">#BDBDBD</color>
 
     <color name="white">#FFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="finestGray">#E7E7E7</color>
 </resources>

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:scrollbars="none"
-    tools:context="com.medcords.mhcpanel.activities.UserSignupActivity">
+    tools:context="com.medcords.mhcpanel.activities.PatientSignupActivity">
 
     <LinearLayout
         android:id="@+id/activity_user_signup"

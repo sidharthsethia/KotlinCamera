@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -29,13 +31,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.utilities.GPSTracker;
+import com.medcords.mhcpanel.views.DatePickerFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class UserSignupActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class PatientSignupActivity extends AppCompatActivity implements DatePickerFragment.DateSetListener{
 
     private Button mSignupButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText, mNameEditText, mPlaceOfLivingEditText, mDOBEditText, mAadharEditText, mRelationshipEditText, mAgeEditText;
@@ -105,16 +107,24 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
         mDOBEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        UserSignupActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd.setMaxDate(now);
-                dpd.setTitle("Select Date");
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DialogFragment datePickerFragment = new DatePickerFragment();
+
+                Bundle b = new Bundle();
+
+                /** Storing the selected item's index in the bundle object */
+                b.putInt("year", year - 40);
+                b.putInt("month", month);
+                b.putInt("day", day);
+
+                /** Setting the bundle object to the dialog fragment object */
+                datePickerFragment.setArguments(b);
+
+
+                datePickerFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
         mPlaceOfLivingEditText.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +140,7 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
                                         new LatLng(latitude, longitude),
                                         new LatLng(latitude, latitude)))
                                     .setFilter(typeFilter)
-                                    .build(UserSignupActivity.this);
+                                    .build(PatientSignupActivity.this);
                     startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
                 } catch (GooglePlayServicesRepairableException e) {
                     // TODO: Handle the error.
@@ -145,12 +155,12 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
             public void onClick(View view) {
 
                 setRelationList(mGenderRadioGroup.getCheckedRadioButtonId());
-                final Dialog dialog = new Dialog(UserSignupActivity.this);
+                final Dialog dialog = new Dialog(PatientSignupActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_list_view);
 
                 ListView lv = (ListView) dialog.findViewById(R.id.listView1);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(UserSignupActivity.this, android.R.layout.simple_list_item_1, relationNames);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(PatientSignupActivity.this, android.R.layout.simple_list_item_1, relationNames);
                 lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -184,12 +194,6 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
         }
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-        mDOBEditText.setText(date);
-    }
-
     private void setRelationList(int id){
         relationNames.clear();
 
@@ -214,4 +218,9 @@ public class UserSignupActivity extends AppCompatActivity implements DatePickerD
     }
 
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        String date = day+"/"+(month+1)+"/"+year;
+        mDOBEditText.setText(date);
+    }
 }

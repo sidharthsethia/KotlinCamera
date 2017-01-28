@@ -5,19 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,7 +24,6 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
@@ -79,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
         addUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, UserSignupActivity.class);
+                Intent i = new Intent(MainActivity.this, PatientSignupActivity.class);
                 startActivity(i);
             }
         });
@@ -139,7 +133,14 @@ public class MainActivity extends ActionBarActivity {
                             return;
                         }
 
-                        String otp_title = String.format(getResources().getString(R.string.otp_title), mPhoneEditText.getText().toString().trim());
+                        dialog.dismiss();
+
+                        Intent i = new Intent(MainActivity.this, PatientListActivity.class);
+                        startActivity(i);
+                        finish();
+
+
+                        /*String otp_title = String.format(getResources().getString(R.string.otp_title), mPhoneEditText.getText().toString().trim());
                         mOTPTitleTextView.setText(Html.fromHtml(otp_title));
 
                         mSearchLayout.setVisibility(View.GONE);
@@ -148,7 +149,7 @@ public class MainActivity extends ActionBarActivity {
                         mCancelTextView.setVisibility(View.VISIBLE);
 
                         dialog.setCanceledOnTouchOutside(false);
-                        dialog.setCancelable(false);
+                        dialog.setCancelable(false);*/
                     }
                 });
 
