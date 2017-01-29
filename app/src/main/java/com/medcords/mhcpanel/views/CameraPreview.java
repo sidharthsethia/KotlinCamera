@@ -7,6 +7,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by sidharthsethia on 26/01/17.
@@ -17,6 +18,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private Camera mCamera;
     private static String TAG = CameraPreview.class.getName();
 
+    private static int FLASH_MODE_AUTO = 1;
+    private static int FLASH_MODE_ON = 2;
+    private static int FLASH_MODE_OFF = 3;
+
     public CameraPreview(Context context, Camera camera) {
         super(context);
         stopPreviewAndFreeCamera();
@@ -26,6 +31,11 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 //*EDIT*//params.setFocusMode("continuous-picture");
 //It is better to use defined constraints as opposed to String, thanks to AbdelHady
         params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        List<String> flashModes = params.getSupportedFlashModes();
+        if (flashModes.contains(android.hardware.Camera.Parameters.FLASH_MODE_AUTO))
+        {
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
+        }
         mCamera.setParameters(params);
 
         // Install a SurfaceHolder.Callback so we get notified when the
@@ -98,5 +108,32 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
             mCamera = null;
         }
+    }
+
+    public void turnOnFlash(){
+        Camera.Parameters params = mCamera.getParameters();
+        params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+        mCamera.setParameters(params);
+    }
+
+    public void turnOFfFlash(){
+        Camera.Parameters params = mCamera.getParameters();
+        params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+        mCamera.setParameters(params);
+    }
+
+    public int getFlashStatus(){
+        Camera.Parameters params = mCamera.getParameters();
+        if(Camera.Parameters.FLASH_MODE_AUTO.equals(params.getFlashMode())){
+            return FLASH_MODE_AUTO;
+        } else if(Camera.Parameters.FLASH_MODE_ON.equals(params.getFlashMode())){
+            return FLASH_MODE_ON;
+        }
+        else if(Camera.Parameters.FLASH_MODE_OFF.equals(params.getFlashMode())){
+            return FLASH_MODE_OFF;
+        }
+
+        return FLASH_MODE_OFF;
+
     }
 }
