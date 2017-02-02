@@ -193,7 +193,7 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // get an image from the camera
-                        if(mPreview.safeToTakePicture){
+                        if(mPreview.safeToTakePicture && mCamera != null){
                             mCamera.takePicture(null, null, mPicture);
                             mPreview.safeToTakePicture = false;
                         }
