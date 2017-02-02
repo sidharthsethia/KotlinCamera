@@ -42,6 +42,22 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:windowTitleStyle">@style/DialogWindowTitle.Colored</item>
+    </style>
+
+    <style name="DialogWindowTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Holo.DialogWindowTitle</item>
+    </style>
+
+
+    <style name="DialogWindowTitle.Colored" parent="@style/DialogWindowTitle">
+        <item name="android:textAppearance">@style/TextAppearance.Colored.DialogWindowTitle</item>
+    </style>
+
+    <style name="TextAppearance.Colored.DialogWindowTitle" parent="@android:style/TextAppearance.Holo.DialogWindowTitle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

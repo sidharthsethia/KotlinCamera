@@ -162,6 +162,8 @@ public class Utility {
     }
 
     public static void colorizeDatePicker(DatePicker datePicker) {
+
+
         Resources system = Resources.getSystem();
         int dayId = system.getIdentifier("day", "id", "android");
         int monthId = system.getIdentifier("month", "id", "android");
@@ -170,6 +172,8 @@ public class Utility {
         NumberPicker dayPicker = (NumberPicker) datePicker.findViewById(dayId);
         NumberPicker monthPicker = (NumberPicker) datePicker.findViewById(monthId);
         NumberPicker yearPicker = (NumberPicker) datePicker.findViewById(yearId);
+
+
 
         setDividerColor(dayPicker);
         setDividerColor(monthPicker);

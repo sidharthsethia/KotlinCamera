@@ -1,6 +1,7 @@
 package com.medcords.mhcpanel.activities;
 
 import android.app.Dialog;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
