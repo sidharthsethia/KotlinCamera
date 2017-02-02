@@ -22,6 +22,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private static int FLASH_MODE_ON = 2;
     private static int FLASH_MODE_OFF = 3;
 
+    public boolean safeToTakePicture = false;
+
     public CameraPreview(Context context, Camera camera) {
         super(context);
         stopPreviewAndFreeCamera();
@@ -89,7 +91,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         try {
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
-
+            safeToTakePicture = true;
         } catch (Exception e){
             Log.d(TAG, "Error starting camera preview: " + e.getMessage());
         }

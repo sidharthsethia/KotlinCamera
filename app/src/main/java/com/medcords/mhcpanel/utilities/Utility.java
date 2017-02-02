@@ -3,6 +3,8 @@ package com.medcords.mhcpanel.utilities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Environment;
@@ -11,12 +13,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.medcords.mhcpanel.R;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -154,6 +159,39 @@ public class Utility {
         }
 
         return mediaFile;
+    }
+
+    public static void colorizeDatePicker(DatePicker datePicker) {
+        Resources system = Resources.getSystem();
+        int dayId = system.getIdentifier("day", "id", "android");
+        int monthId = system.getIdentifier("month", "id", "android");
+        int yearId = system.getIdentifier("year", "id", "android");
+
+        NumberPicker dayPicker = (NumberPicker) datePicker.findViewById(dayId);
+        NumberPicker monthPicker = (NumberPicker) datePicker.findViewById(monthId);
+        NumberPicker yearPicker = (NumberPicker) datePicker.findViewById(yearId);
+
+        setDividerColor(dayPicker);
+        setDividerColor(monthPicker);
+        setDividerColor(yearPicker);
+    }
+
+    private static void setDividerColor(NumberPicker picker) {
+        if (picker == null)
+            return;
+
+        final int count = picker.getChildCount();
+        for (int i = 0; i < count; i++) {
+            try {
+                Field dividerField = picker.getClass().getDeclaredField("mSelectionDivider");
+                dividerField.setAccessible(true);
+                ColorDrawable colorDrawable = new ColorDrawable(picker.getResources().getColor(R.color.colorPrimaryDark));
+                dividerField.set(picker, colorDrawable);
+                picker.invalidate();
+            } catch (Exception e) {
+                Log.w("setDividerColor", e);
+            }
+        }
     }
 
 

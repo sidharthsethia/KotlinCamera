@@ -207,6 +207,40 @@
                 android:hint="Relation" />
         </android.support.design.widget.TextInputLayout>
 
+        <TextView android:layout_width="match_parent"
+            android:text="Subscription term"
+            android:paddingLeft="4dp"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorTextSecondary"
+            android:layout_height="wrap_content" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/input_subscription"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="6 months"
+                android:id="@+id/input_6_months"
+                android:paddingLeft="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="1 year"
+                android:id="@+id/input_1_year"
+                android:paddingLeft="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
 
 
 

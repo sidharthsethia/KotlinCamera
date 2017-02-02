@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
+import com.medcords.mhcpanel.R;
+import com.medcords.mhcpanel.utilities.Utility;
+
 import java.util.Calendar;
 
 /**
@@ -41,8 +44,13 @@ public class DatePickerFragment extends DialogFragment
         int month = bundle.getInt("month");;
         int day = bundle.getInt("day");;
 
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog,this, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), R.style.CustomDialogTheme ,this, year, month, day);
         dialog.getDatePicker().setSpinnersShown(true);
+
+        Calendar c = Calendar.getInstance();
+        dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+
+        Utility.colorizeDatePicker(dialog.getDatePicker());
         return dialog;
     }
 

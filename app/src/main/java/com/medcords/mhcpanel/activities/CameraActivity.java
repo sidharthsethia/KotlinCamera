@@ -1,5 +1,6 @@
 package com.medcords.mhcpanel.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -26,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -43,11 +45,13 @@ public class CameraActivity extends AppCompatActivity {
     private TextView noOfImagesTextView;
 
     private LinearLayout singleModeLayout,batchModeLayout;
+    private FrameLayout preview;
 
     private Boolean flashOn = false;
     private Boolean singleModeOn = true;
 
     private int noOfImagesTaken = 0;
+    private ArrayList<String> imagesAddressList;
 
 
     private static String TAG = CameraPreview.class.getName();
@@ -77,26 +81,21 @@ public class CameraActivity extends AppCompatActivity {
                 picture.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 imagePreview.setImageBitmap(picture);
                 imagePreview.setVisibility(View.VISIBLE);
-                mCamera.startPreview();
+                imagesAddressList.add(mPictureFile.getAbsolutePath());
+
+                if(singleModeOn){
+                    mCamera.stopPreview();
+                    openUploadRecordsActivity();
+                }
+                else
+                    mCamera.startPreview();
+
+                mPreview.safeToTakePicture = true;
+
             } catch (Exception e) {
                 e.printStackTrace();
+                mPreview.safeToTakePicture = true;
             }
-
-            /*File pictureFile = Utility.getOutputMediaFile(MEDIA_TYPE_IMAGE);
-            if (pictureFile == null){
-                Log.d(TAG, "Error creating media file, check storage permissions");
-                return;
-            }
-
-            try {
-                FileOutputStream fos = new FileOutputStream(pictureFile);
-                fos.write(data);
-                fos.close();
-            } catch (FileNotFoundException e) {
-                Log.d(TAG, "File not found: " + e.getMessage());
-            } catch (IOException e) {
-                Log.d(TAG, "Error accessing file: " + e.getMessage());
-            }*/
         }
     };
 
@@ -105,19 +104,22 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_preview);
 
-        if(checkCameraHardware(this)){
+       /* if(checkCameraHardware(this)){
             releaseCamera();
             mCamera = getCameraInstance();
         } else {
             Toast.makeText(this,"No camera Found",Toast.LENGTH_SHORT).show();
         }
 
+        imagesAddressList = new ArrayList<>();
+
 
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this, mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
-
+*/
+        preview = (FrameLayout) findViewById(R.id.camera_preview);
         captureButton = (ImageButton) findViewById(R.id.button_capture);
         flashButton = (ImageButton) findViewById(R.id.flash_button);
         singleModeButton = (ImageButton) findViewById(R.id.single_mode);
@@ -137,6 +139,13 @@ public class CameraActivity extends AppCompatActivity {
 
         noOfImagesTextView = (TextView) findViewById(R.id.photo_number_indicator);
         noOfImagesTextView.setVisibility(View.GONE);
+
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUploadRecordsActivity();
+            }
+        });
 
         singleModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +193,11 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // get an image from the camera
-                        mCamera.takePicture(null, null, mPicture);
+                        if(mPreview.safeToTakePicture){
+                            mCamera.takePicture(null, null, mPicture);
+                            mPreview.safeToTakePicture = false;
+                        }
+
                     }
                 }
         );
@@ -192,7 +205,9 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void releaseCamera(){
+
         if (mCamera != null){
+            mPreview.getHolder().removeCallback(mPreview);
             mCamera.release();        // release the camera for other applications
             mCamera = null;
         }
@@ -202,5 +217,36 @@ public class CameraActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         releaseCamera();
+    }
+
+    public void openUploadRecordsActivity(){
+        Intent intent = new Intent(this, UploadRecordsActivity.class);
+        intent.putStringArrayListExtra("images_address_list", imagesAddressList);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(checkCameraHardware(this)){
+            releaseCamera();
+            mCamera = getCameraInstance();
+        } else {
+            Toast.makeText(this,"No camera Found",Toast.LENGTH_SHORT).show();
+        }
+
+        imagesAddressList = new ArrayList<>();
+
+
+        // Create our Preview view and set it as the content of our activity.
+        mPreview = new CameraPreview(this, mCamera);
+        preview.addView(mPreview);
+
+        noOfImagesTaken = 0;
+        imagePreview.setVisibility(View.GONE);
+        noOfImagesTextView.setVisibility(View.GONE);
+        doneButton.setVisibility(View.GONE);
+        batchModeLayout.setVisibility(View.VISIBLE);
+        singleModeLayout.setVisibility(View.VISIBLE);
     }
 }
