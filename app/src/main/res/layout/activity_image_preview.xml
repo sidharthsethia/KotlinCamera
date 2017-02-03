@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <ImageView
+        android:id="@+id/camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/black"
+        android:layout_weight="1"
+        />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/materialize_primary_dark"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/done"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/checkmark"
+            android:scaleType="fitXY"
+            android:background="@color/transparent"
+            android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/done"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="visible"
+                android:background="@color/transparent"
+                android:src="@mipmap/retake"
+                android:id="@+id/retake_button"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_toLeftOf="@+id/done"
+            android:orientation="horizontal"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/rotate_button"
+                    android:layout_centerInParent="true"
+                    android:background="@color/transparent"
+                    android:src="@mipmap/rotate"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+</LinearLayout>

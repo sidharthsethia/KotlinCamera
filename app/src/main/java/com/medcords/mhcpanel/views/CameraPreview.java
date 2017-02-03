@@ -1,12 +1,16 @@
 package com.medcords.mhcpanel.views;
 
 import android.content.Context;
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.medcords.mhcpanel.utilities.Utility;
+
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,6 +20,7 @@ import java.util.List;
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mHolder;
     private Camera mCamera;
+
     private static String TAG = CameraPreview.class.getName();
 
     private static int FLASH_MODE_AUTO = 1;
@@ -24,11 +29,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     public boolean safeToTakePicture = false;
 
+    private Context mContext;
+
     public CameraPreview(Context context, Camera camera) {
         super(context);
         stopPreviewAndFreeCamera();
         mCamera = camera;
-
+        mContext = context;
         Camera.Parameters params = mCamera.getParameters();
 //*EDIT*//params.setFocusMode("continuous-picture");
 //It is better to use defined constraints as opposed to String, thanks to AbdelHady
@@ -38,6 +45,29 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         {
             params.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
         }
+
+        Camera.Size bestSize = null;
+        List<Camera.Size> sizeList = camera.getParameters().getSupportedPreviewSizes();
+        bestSize = sizeList.get(0);
+        for(int i = 1; i < sizeList.size(); i++){
+            if((sizeList.get(i).width * sizeList.get(i).height) > (bestSize.width * bestSize.height)){
+                bestSize = sizeList.get(i);
+            }
+        }
+
+        List<Integer> supportedPreviewFormats = params.getSupportedPreviewFormats();
+        Iterator<Integer> supportedPreviewFormatsIterator = supportedPreviewFormats.iterator();
+        while(supportedPreviewFormatsIterator.hasNext()){
+            Integer previewFormat =supportedPreviewFormatsIterator.next();
+            if (previewFormat == ImageFormat.YV12) {
+                params.setPreviewFormat(previewFormat);
+            }
+        }
+
+        params.setPreviewSize(bestSize.width, bestSize.height);
+
+        params.setPictureSize(bestSize.width, bestSize.height);
+
         mCamera.setParameters(params);
 
         // Install a SurfaceHolder.Callback so we get notified when the

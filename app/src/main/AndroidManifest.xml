@@ -34,11 +34,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoTitleBar">
 
-            <!--<intent-filter>
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
         </activity>
         <activity
@@ -76,9 +78,14 @@
             android:label="Medcords"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoTitleBar" />
-        <activity android:name=".activities.UploadRecordsActivity"
+        <activity
+            android:name=".activities.UploadRecordsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeDarkHint"></activity>
+            android:theme="@style/AppThemeDarkHint" />
+        <activity android:name=".activities.ImagePreviewActivity"
+            android:label="Medcords"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoTitleBar"/>
     </application>
 
 </manifest>
