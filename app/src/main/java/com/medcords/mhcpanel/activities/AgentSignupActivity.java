@@ -1,15 +1,19 @@
 package com.medcords.mhcpanel.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,6 +24,11 @@ import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.utilities.Utility;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import static com.medcords.mhcpanel.utilities.Constants.REQUEST_CAMERA;
+import static com.medcords.mhcpanel.utilities.Constants.SELECT_FILE;
+import static com.medcords.mhcpanel.utilities.Constants.SEND_PHOTO_URI_INTENT;
+import static com.medcords.mhcpanel.utilities.Constants.VARIABLE_URI;
+
 public class AgentSignupActivity extends AppCompatActivity {
 
     private RelativeLayout mOTPLayout, mSignupLayout;
@@ -29,6 +38,7 @@ public class AgentSignupActivity extends AppCompatActivity {
     private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView;
     private CircularImageView mProfileImageView;
     private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPhone, inputLayoutOTP;
+    private Uri profilePhotoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +104,12 @@ public class AgentSignupActivity extends AppCompatActivity {
             }
         });
 
+        mProfileImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.addProfilePicture(AgentSignupActivity.this);
+            }
+        });
     }
 
     private void submitForm() {
@@ -149,4 +165,54 @@ public class AgentSignupActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        Log.d("Inside activity result","true");
+        switch(requestCode) {
+            case SELECT_FILE:
+                if(resultCode == RESULT_OK){
+                    profilePhotoUri = imageReturnedIntent.getData();
+                    if(profilePhotoUri != null)
+                        mProfileImageView.setImageURI(profilePhotoUri);
+                }
+
+                break;
+            case REQUEST_CAMERA:
+                Log.d("Inside request camera","true");
+                if(resultCode == RESULT_OK){
+                    Log.d("Inside result ok",profilePhotoUri.getEncodedPath());
+                    if(profilePhotoUri != null)
+                        mProfileImageView.setImageURI(profilePhotoUri);
+                }
+                break;
+        }
+    }
+
+    private BroadcastReceiver photoUriReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // TODO Auto-generated method stub
+            profilePhotoUri = intent.getParcelableExtra(VARIABLE_URI);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(photoUriReceiver,
+                new IntentFilter(SEND_PHOTO_URI_INTENT));
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(photoUriReceiver);
+    }
+
 }

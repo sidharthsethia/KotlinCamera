@@ -2,14 +2,18 @@ package com.medcords.mhcpanel.activities;
 
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -34,11 +38,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.utilities.GPSTracker;
+import com.medcords.mhcpanel.utilities.Utility;
 import com.medcords.mhcpanel.views.DatePickerFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static com.medcords.mhcpanel.utilities.Constants.PLACE_AUTOCOMPLETE_REQUEST_CODE;
+import static com.medcords.mhcpanel.utilities.Constants.REQUEST_CAMERA;
+import static com.medcords.mhcpanel.utilities.Constants.SELECT_FILE;
+import static com.medcords.mhcpanel.utilities.Constants.SEND_PHOTO_URI_INTENT;
+import static com.medcords.mhcpanel.utilities.Constants.VARIABLE_URI;
 
 public class PatientSignupActivity extends AppCompatActivity implements DatePickerFragment.DateSetListener{
 
@@ -51,7 +62,7 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
     private CheckBox ageUnknownCheckbox;
     private RadioGroup mGenderRadioGroup, mSubscriptionRadioGroup;
 
-    private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+    private Uri profilePhotoUri;
 
     private ArrayList<String>  relationNames = new ArrayList<String>();
 
@@ -225,23 +236,46 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
             }
         });
 
+        mProfileImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.addProfilePicture(PatientSignupActivity.this);
+            }
+        });
+
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(this, data);
-                mPlaceOfLivingEditText.setText(place.getAddress());
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(this, data);
-                // TODO: Handle the error.
-                Log.i("Error", status.getStatusMessage());
+        switch(requestCode) {
+            case SELECT_FILE:
+                if(resultCode == RESULT_OK){
+                    profilePhotoUri = data.getData();
+                    if(profilePhotoUri != null)
+                        mProfileImageView.setImageURI(profilePhotoUri);
+                }
 
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
+                break;
+            case REQUEST_CAMERA:
+                if(resultCode == RESULT_OK){
+                    if(profilePhotoUri != null)
+                        mProfileImageView.setImageURI(profilePhotoUri);
+                }
+                break;
+            case PLACE_AUTOCOMPLETE_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    Place place = PlaceAutocomplete.getPlace(this, data);
+                    mPlaceOfLivingEditText.setText(place.getAddress());
+                } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                    Status status = PlaceAutocomplete.getStatus(this, data);
+                    // TODO: Handle the error.
+                    Log.i("Error", status.getStatusMessage());
+
+                } else if (resultCode == RESULT_CANCELED) {
+                    // The user canceled the operation.
+                }
+                break;
         }
     }
 
@@ -274,4 +308,28 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
         String date = day+"/"+(month+1)+"/"+year;
         mDOBEditText.setText(date);
     }
+
+    private BroadcastReceiver photoUriReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // TODO Auto-generated method stub
+            profilePhotoUri = intent.getParcelableExtra(VARIABLE_URI);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(photoUriReceiver,
+                new IntentFilter(SEND_PHOTO_URI_INTENT));
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(photoUriReceiver);
+    }
+
 }

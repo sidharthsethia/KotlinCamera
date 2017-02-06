@@ -6,4 +6,12 @@ package com.medcords.mhcpanel.utilities;
 
 public class Constants {
     public static final int OTP_LENGTH = 4;
+
+    public static final int REQUEST_CAMERA = 1;
+    public static final int SELECT_FILE = 2;
+    public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 3;
+
+    public static final String IMAGE_DIRECTORY_NAME = "MedCords";
+    public static final String SEND_PHOTO_URI_INTENT = "send-photo-uri";
+    public static final String VARIABLE_URI = "uri";
 }

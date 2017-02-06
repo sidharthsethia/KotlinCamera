@@ -2,6 +2,8 @@ package com.medcords.mhcpanel.utilities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -10,7 +12,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
@@ -19,7 +23,6 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.medcords.mhcpanel.R;
 
@@ -31,6 +34,10 @@ import java.util.Locale;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
+import static com.medcords.mhcpanel.utilities.Constants.REQUEST_CAMERA;
+import static com.medcords.mhcpanel.utilities.Constants.SELECT_FILE;
+import static com.medcords.mhcpanel.utilities.Constants.SEND_PHOTO_URI_INTENT;
+import static com.medcords.mhcpanel.utilities.Constants.VARIABLE_URI;
 
 /**
  * Created by sidharthsethia on 27/12/16.
@@ -38,9 +45,6 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
 public class Utility {
 
-    private static final String IMAGE_DIRECTORY_NAME = "MedCords";
-    private static final String TYPE_IMAGE = "MedCords";
-    private static final String TYPE_DUMMY = "MedCords";
 
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -140,13 +144,13 @@ public class Utility {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                IMAGE_DIRECTORY_NAME);
+                Constants.IMAGE_DIRECTORY_NAME);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create "
-                        + IMAGE_DIRECTORY_NAME + " directory");
+                Log.d(Constants.IMAGE_DIRECTORY_NAME, "Oops! Failed create "
+                        + Constants.IMAGE_DIRECTORY_NAME + " directory");
                 return null;
             }
         }
@@ -287,6 +291,39 @@ public class Utility {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+    public static void addProfilePicture(final Activity activity){
+
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+        builder.setTitle("Add Profile Photo");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (items[item].equals("Take Photo")) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                    Uri fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+
+                    Intent sendURIintent = new Intent(SEND_PHOTO_URI_INTENT);
+                    sendURIintent.putExtra(VARIABLE_URI, fileUri);
+                    LocalBroadcastManager.getInstance(activity).sendBroadcast(sendURIintent);
+
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                    activity.startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Choose from Library")) {
+                    Intent intent = new Intent(
+                            Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activity.startActivityForResult(intent,SELECT_FILE);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
 
