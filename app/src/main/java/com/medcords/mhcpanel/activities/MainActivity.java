@@ -119,7 +119,8 @@ public class MainActivity extends ActionBarActivity {
                 mSearchLayout.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.GONE);
 
-
+                inputLayoutPhone.setHint(null);
+                mPhoneEditText.setHint("Enter");
 
                 mResendOTPTextView.setTextColor(getResources().getColor(R.color.colorTextPrimary));
                 mOTPTitleTextView.setTextColor(getResources().getColor(R.color.colorTextPrimary));

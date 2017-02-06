@@ -59,7 +59,7 @@
                 android:layout_weight="1"
                 android:text="Medcords Id"
                 android:id="@+id/medcord_id"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:paddingLeft="8dp"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
@@ -70,7 +70,7 @@
                 android:text="Mobile"
                 android:checked="true"
                 android:id="@+id/mobile"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:paddingLeft="8dp"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
@@ -90,12 +90,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:gravity="center"
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
                 android:maxLength="10"
                 android:textColorHint="@color/colorTextSecondary"
-                android:hint="Mobile" />
+                android:hint="Enter" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
