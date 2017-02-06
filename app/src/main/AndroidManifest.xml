@@ -34,13 +34,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoTitleBar">
 
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
 
         </activity>
         <activity
@@ -67,11 +65,11 @@
             android:theme="@style/AppThemeDarkHint" />
         <activity android:name=".activities.PatientListActivity" />
         <activity android:name=".activities.PatientActionsActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".activities.CameraActivity"

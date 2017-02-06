@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import id.zelory.compressor.Compressor;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 import static com.medcords.mhcpanel.utilities.Utility.checkCameraHardware;
 import static com.medcords.mhcpanel.utilities.Utility.getCameraInstance;
 
@@ -112,12 +113,12 @@ public class CameraActivity extends AppCompatActivity {
             try {
 
                 FileOutputStream out = new FileOutputStream(mPictureFile);
-                picture.compress(Bitmap.CompressFormat.JPEG, 80, out);
+                picture.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
                 Bitmap compressedImageBitmap = Compressor.getDefault(CameraActivity.this).compressToBitmap(mPictureFile);
-                File mCompressedPictureFile = Utility.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+                File mCompressedPictureFile = Utility.getOutputMediaFile(MEDIA_TYPE_VIDEO);
                 FileOutputStream out2 = new FileOutputStream(mCompressedPictureFile);
-                compressedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out2);
+                compressedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out2);
 
                 Utility.deleteImage(mPictureFile.getAbsolutePath());
 

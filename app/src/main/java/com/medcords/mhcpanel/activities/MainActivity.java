@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -101,6 +102,18 @@ public class MainActivity extends ActionBarActivity {
                 final TextView mCancelTextView = (TextView) dialog.findViewById(R.id.cancel_textview);
                 final TextInputLayout inputLayoutPhone = (TextInputLayout) dialog.findViewById(R.id.input_layout_mobile);
                 final TextInputLayout inputLayoutOTP = (TextInputLayout) dialog.findViewById(R.id.input_layout_otp);
+                final RadioGroup mSearchType = (RadioGroup) dialog.findViewById(R.id.input_type);
+
+                mSearchType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if (i == R.id.medcord_id){
+                            mOTPEditText.setHint("Medcords Id");
+                        } else {
+                            mOTPEditText.setHint("Mobile");
+                        }
+                    }
+                });
 
                 mOTPLayout.setVisibility(View.GONE);
                 mSearchLayout.setVisibility(View.VISIBLE);

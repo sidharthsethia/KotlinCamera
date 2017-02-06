@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -41,12 +44,12 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
 
     private Button mSignupButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText, mNameEditText, mPlaceOfLivingEditText, mDOBEditText, mAadharEditText, mRelationshipEditText, mAgeEditText;
-    private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView;
+    private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView, mOTPDialogNameTextView, mOTPSubscriptionTextView, mOTPCancelTextView;
     private CircularImageView mProfileImageView;
     private TextInputLayout inputLayoutName, inputLayoutPlace, inputLayoutPhone, inputLayoutOTP, inputLayoutDOB, inputLayoutRelationship, inputLayoutAadhar, inputLayoutAge;
     private double latitude=-1000,longitude=-1000;
     private CheckBox ageUnknownCheckbox;
-    private RadioGroup mGenderRadioGroup;
+    private RadioGroup mGenderRadioGroup, mSubscriptionRadioGroup;
 
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
@@ -58,8 +61,7 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
         setContentView(R.layout.activity_user_signup);
 
         mSignupButton = (Button) findViewById(R.id.register_button);
-        mOTPSubmitButton = (Button) findViewById(R.id.submit_button);
-        mOTPEditText = (EditText) findViewById(R.id.input_otp);
+
         mPhoneEditText = (EditText) findViewById(R.id.input_mobile);
         mAgeEditText = (EditText) findViewById(R.id.input_age);
         mNameEditText = (EditText) findViewById(R.id.input_name);
@@ -67,9 +69,9 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
         mAadharEditText = (EditText) findViewById(R.id.input_aadhar);
         mRelationshipEditText = (EditText) findViewById(R.id.input_relationship);
         mDOBEditText = (EditText) findViewById(R.id.input_dob);
-        mResendOTPTextView = (TextView) findViewById(R.id.resend_otp_text_view);
+
         mLoginTextView = (TextView) findViewById(R.id.login_text_view);
-        mOTPTitleTextView = (TextView) findViewById(R.id.otp_text_view);
+
         mProfileImageView = (CircularImageView) findViewById(R.id.input_photo);
         inputLayoutAadhar = (TextInputLayout) findViewById(R.id.input_layout_aadhar);
         inputLayoutDOB = (TextInputLayout) findViewById(R.id.input_layout_dob);
@@ -78,9 +80,10 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
         inputLayoutPhone = (TextInputLayout) findViewById(R.id.input_layout_mobile);
         inputLayoutAge = (TextInputLayout) findViewById(R.id.input_layout_age);
-        inputLayoutOTP = (TextInputLayout) findViewById(R.id.input_layout_otp);
+
         ageUnknownCheckbox = (CheckBox) findViewById(R.id.age_unknown_checkbox);
         mGenderRadioGroup = (RadioGroup) findViewById(R.id.input_gender);
+        mSubscriptionRadioGroup = (RadioGroup) findViewById(R.id.input_subscription);
 
         mRelationshipEditText.setFocusable(false);
         mPlaceOfLivingEditText.setFocusable(false);
@@ -169,6 +172,54 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
                         mRelationshipEditText.setText(relationNames.get(i));
                     }
                 });
+                dialog.show();
+
+            }
+        });
+
+        mSignupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(PatientSignupActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_new_user_otp);
+
+                mOTPSubmitButton = (Button) dialog.findViewById(R.id.submit_button);
+                mOTPEditText = (EditText) dialog.findViewById(R.id.input_otp);
+                mResendOTPTextView = (TextView) dialog.findViewById(R.id.resend_otp_text_view);
+                mOTPTitleTextView = (TextView) dialog.findViewById(R.id.otp_text_view);
+                inputLayoutOTP = (TextInputLayout) dialog.findViewById(R.id.input_layout_otp);
+                mOTPDialogNameTextView = (TextView) dialog.findViewById(R.id.name_text_view);
+                mOTPSubscriptionTextView = (TextView) dialog.findViewById(R.id.subscription_text_view);
+                mOTPCancelTextView = (TextView) dialog.findViewById(R.id.cancel_text_view);
+
+                String otp_title = String.format(getResources().getString(R.string.otp_title), mPhoneEditText.getText().toString().trim());
+                mOTPTitleTextView.setText(Html.fromHtml(otp_title));
+
+
+                mOTPDialogNameTextView.setText(mNameEditText.getText().toString());
+                mOTPSubscriptionTextView.setText("Subscription Term: " + (mSubscriptionRadioGroup.getCheckedRadioButtonId() == R.id.input_6_months ? "6 months" : "1 year"));
+
+                mOTPSubmitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        Toast toast = Toast.makeText(PatientSignupActivity.this,"User registered successfully.", Toast.LENGTH_LONG);
+                        toast.show();
+
+                        Intent i = new Intent(PatientSignupActivity.this, PatientActionsActivity.class);
+                        i.putExtra("new_user",true);
+                        startActivity(i);
+                    }
+                });
+
+                mOTPCancelTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
                 dialog.show();
 
             }

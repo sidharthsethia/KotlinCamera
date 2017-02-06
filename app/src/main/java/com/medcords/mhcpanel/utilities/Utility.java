@@ -39,6 +39,8 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 public class Utility {
 
     private static final String IMAGE_DIRECTORY_NAME = "MedCords";
+    private static final String TYPE_IMAGE = "MedCords";
+    private static final String TYPE_DUMMY = "MedCords";
 
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -150,7 +152,7 @@ public class Utility {
         }
 
         // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmssS",
                 Locale.getDefault()).format(new Date());
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
@@ -158,7 +160,7 @@ public class Utility {
                     + "IMG_" + timeStamp + ".jpg");
         } else if (type == MEDIA_TYPE_VIDEO) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "VID_" + timeStamp + ".mp4");
+                    + "IMG_" + timeStamp + ".jpg");
         } else {
             return null;
         }

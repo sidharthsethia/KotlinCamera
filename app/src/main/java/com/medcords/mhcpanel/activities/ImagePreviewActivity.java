@@ -85,10 +85,9 @@ public class ImagePreviewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Intent intent=new Intent();
         intent.putExtra("action","retake");
         setResult(CameraActivity.CAMERA_PREVIEW_ACTIVITY,intent);
-        finish();
+        super.onBackPressed();
     }
 }

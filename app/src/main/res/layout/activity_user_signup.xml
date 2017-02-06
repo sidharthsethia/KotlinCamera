@@ -214,6 +214,7 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
+
         <RadioGroup
             android:layout_width="match_parent"
             android:orientation="horizontal"

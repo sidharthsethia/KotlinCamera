@@ -12,11 +12,14 @@ import com.medcords.mhcpanel.R;
 public class PatientActionsActivity extends AppCompatActivity {
 
     private ImageButton uploadRecordsButton, searchRecordsButton, editPatientDetailsButton;
+    private Boolean isUserNew;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_actions);
+
+        isUserNew = getIntent().getExtras().getBoolean("new_user");
 
         editPatientDetailsButton = (ImageButton) findViewById(R.id.edit_patient_button);
         uploadRecordsButton = (ImageButton) findViewById(R.id.upload_records_button);
@@ -35,9 +38,11 @@ public class PatientActionsActivity extends AppCompatActivity {
         searchRecordsButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                uploadRecordsButton.setImageResource(R.mipmap.upload_grey);
-                searchRecordsButton.setImageResource(R.mipmap.search_green);
-                editPatientDetailsButton.setImageResource(R.mipmap.edit_grey);
+                if(!isUserNew){
+                    uploadRecordsButton.setImageResource(R.mipmap.upload_grey);
+                    searchRecordsButton.setImageResource(R.mipmap.search_green);
+                    editPatientDetailsButton.setImageResource(R.mipmap.edit_grey);
+                }
                 return false;
             }
         });
