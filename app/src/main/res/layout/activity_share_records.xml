@@ -78,7 +78,7 @@
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/input_doctor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:singleLine="true"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="text"
-                android:hint="Doctor" />
+                android:hint="With Doctor" />
         </android.support.design.widget.TextInputLayout>
 
         <View

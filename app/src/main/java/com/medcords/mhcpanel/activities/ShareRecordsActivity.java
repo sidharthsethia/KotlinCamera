@@ -5,6 +5,8 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,7 +27,7 @@ public class ShareRecordsActivity extends AppCompatActivity {
 
     TextView mPatientId, mPatientName;
     private TextInputLayout inputLayoutDoctor;
-    private EditText mDoctorEditText;
+    private AutoCompleteTextView mDoctorEditText;
     private RadioGroupGridView dateRangeRadioGroup;
     private ChipCloud mBodyTagLayout, mReportTypeTagLayout;
     private Button mShareButton;
@@ -34,12 +36,19 @@ public class ShareRecordsActivity extends AppCompatActivity {
 
     List<String> reportTypeTags, selectedReportTypeTags, bodyTags,selectedBodyTags;
 
+    String[] arr = {"Dr. Grant Anderson",
+            "Dr. Kenneth Ross",
+            "Dr. Kevin Reynolds",
+            "Dr. Helen White",
+            "Dr. Janice Brown",
+            "Dr. Kathleen Jones" };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_records);
 
-        mDoctorEditText = (EditText) findViewById(R.id.input_doctor);
+        mDoctorEditText = (AutoCompleteTextView) findViewById(R.id.input_doctor);
         inputLayoutDoctor = (TextInputLayout) findViewById(R.id.input_layout_doctor);
 
         mPatientId = (TextView) findViewById(R.id.patient_id);
@@ -57,6 +66,13 @@ public class ShareRecordsActivity extends AppCompatActivity {
         mReportCheckBox = (CheckBox) findViewById(R.id.report_type);
         mPrescriptionCheckBox = (CheckBox) findViewById(R.id.prescription_type);
         mBillCheckbox = (CheckBox) findViewById(R.id.bill_type);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,R.layout.autocomplete_text_view, arr);
+
+        mDoctorEditText.setThreshold(2);
+        mDoctorEditText.setAdapter(adapter);
+
 
         mReportCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
