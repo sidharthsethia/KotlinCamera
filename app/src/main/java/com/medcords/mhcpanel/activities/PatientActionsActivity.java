@@ -11,7 +11,7 @@ import com.medcords.mhcpanel.R;
 
 public class PatientActionsActivity extends AppCompatActivity {
 
-    private ImageButton uploadRecordsButton, searchRecordsButton, editPatientDetailsButton;
+    private ImageButton uploadRecordsButton, shareRecordsButton, editPatientDetailsButton;
     private Boolean isUserNew;
 
     @Override
@@ -23,24 +23,24 @@ public class PatientActionsActivity extends AppCompatActivity {
 
         editPatientDetailsButton = (ImageButton) findViewById(R.id.edit_patient_button);
         uploadRecordsButton = (ImageButton) findViewById(R.id.upload_records_button);
-        searchRecordsButton = (ImageButton) findViewById(R.id.search_records_button);
+        shareRecordsButton = (ImageButton) findViewById(R.id.share_records_button);
 
         editPatientDetailsButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 uploadRecordsButton.setImageResource(R.mipmap.upload_grey);
-                searchRecordsButton.setImageResource(R.mipmap.search_grey);
+                shareRecordsButton.setImageResource(R.mipmap.file_grey);
                 editPatientDetailsButton.setImageResource(R.mipmap.edit_green);
                 return false;
             }
         });
 
-        searchRecordsButton.setOnTouchListener(new View.OnTouchListener() {
+        shareRecordsButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if(!isUserNew){
                     uploadRecordsButton.setImageResource(R.mipmap.upload_grey);
-                    searchRecordsButton.setImageResource(R.mipmap.search_green);
+                    shareRecordsButton.setImageResource(R.mipmap.file_green);
                     editPatientDetailsButton.setImageResource(R.mipmap.edit_grey);
                 }
                 return false;
@@ -51,7 +51,7 @@ public class PatientActionsActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 uploadRecordsButton.setImageResource(R.mipmap.upload_green);
-                searchRecordsButton.setImageResource(R.mipmap.search_grey);
+                shareRecordsButton.setImageResource(R.mipmap.file_grey);
                 editPatientDetailsButton.setImageResource(R.mipmap.edit_grey);
                 return false;
             }
@@ -65,13 +65,22 @@ public class PatientActionsActivity extends AppCompatActivity {
             }
         });
 
+        shareRecordsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PatientActionsActivity.this, ShareRecordsActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         uploadRecordsButton.setImageResource(R.mipmap.upload_grey);
-        searchRecordsButton.setImageResource(R.mipmap.search_grey);
+        shareRecordsButton.setImageResource(R.mipmap.file_grey);
         editPatientDetailsButton.setImageResource(R.mipmap.edit_grey);
     }
 }
