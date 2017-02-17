@@ -2,8 +2,10 @@ package com.medcords.mhcpanel.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +48,7 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
     private EditText mDoctorEditText, mReportTypeText, mDateEditText;
     private RadioGroup mDocTypeRadioGroup;
     private Button mUploadButton;
+    private int medCordsId = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,15 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
                 String otp_title = String.format(getResources().getString(R.string.otp_title), "7023479993");
                 mOTPTitleTextView.setText(Html.fromHtml(otp_title));
 
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(UploadRecordsActivity.this);
+
+                if (sharedPreferences.contains("lastRecordsUpdatedForId") && sharedPreferences.getInt("lastRecordsUpdatedForId",0) == medCordsId){
+                    inputLayoutOTP.setVisibility(View.GONE);
+                    mResendOTPTextView.setVisibility(View.GONE);
+                    mOTPTitleTextView.setVisibility(View.GONE);
+                }
+
+
 
                 mOTPDialogNameTextView.setText(mDoctorEditText.getText().toString());
                 mOTPSubscriptionTextView.setText("No of Images: " + Integer.toString(imagesAddressList.size()));
@@ -99,6 +111,11 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
                         dialog.dismiss();
                         Toast toast = Toast.makeText(UploadRecordsActivity.this,"Records uploaded successfully.", Toast.LENGTH_LONG);
                         toast.show();
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(UploadRecordsActivity.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("lastRecordsUpdatedForId", medCordsId);
+                        editor.commit();
 
                         Intent i = new Intent(UploadRecordsActivity.this, PatientActionsActivity.class);
                         i.putExtra("new_user",false);
