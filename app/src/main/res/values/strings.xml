@@ -6,6 +6,9 @@
     <string name="err_msg_name">Enter your full name</string>
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_phone">Enter valid mobile number</string>
+    <string name="err_msg_city">Enter your city</string>
+    <string name="err_msg_state">Enter your state</string>
+    <string name="err_msg_pincode">Enter a valid pincode</string>
     <string name="err_msg_otp">Enter valid OTP</string>
 
     <string name="otp_title">Enter the OTP sent to &lt;b> %1$s &lt;/b>.</string>

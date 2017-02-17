@@ -33,11 +33,11 @@ public class AgentSignupActivity extends AppCompatActivity {
 
     private RelativeLayout mOTPLayout, mSignupLayout;
     private Button mSignupButton, mOTPSubmitButton;
-    private EditText mOTPEditText, mPhoneEditText, mNameEditText, mEmailEditText;
+    private EditText mOTPEditText, mPhoneEditText, mNameEditText, mEmailEditText,mCityEditText, mStateEditText, mPincodeEditText;
     private ProgressBar mProgressBar;
     private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView;
     private CircularImageView mProfileImageView;
-    private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPhone, inputLayoutOTP;
+    private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPhone, inputLayoutState, inputLayoutCity, inputLayoutPincode, inputLayoutOTP;
     private Uri profilePhotoUri;
 
     @Override
@@ -62,6 +62,14 @@ public class AgentSignupActivity extends AppCompatActivity {
         inputLayoutName = (TextInputLayout) findViewById(R.id.input_layout_name);
         inputLayoutPhone = (TextInputLayout) findViewById(R.id.input_layout_mobile);
         inputLayoutOTP = (TextInputLayout) findViewById(R.id.input_layout_otp);
+
+        inputLayoutCity = (TextInputLayout) findViewById(R.id.input_layout_city);
+        inputLayoutState = (TextInputLayout) findViewById(R.id.input_layout_state);
+        inputLayoutPincode = (TextInputLayout) findViewById(R.id.input_layout_pincode);
+
+        mCityEditText = (EditText) findViewById(R.id.input_city);
+        mStateEditText = (EditText) findViewById(R.id.input_state);
+        mPhoneEditText = (EditText) findViewById(R.id.input_pincode);
 
         mOTPLayout.setVisibility(View.GONE);
         mSignupLayout.setVisibility(View.VISIBLE);
@@ -122,6 +130,24 @@ public class AgentSignupActivity extends AppCompatActivity {
         }
 
         if (!Utility.validatePhone(mPhoneEditText,inputLayoutPhone,AgentSignupActivity.this,AgentSignupActivity.this)) {
+            return;
+        }
+
+        if(mCityEditText.getText().toString().isEmpty()){
+            inputLayoutCity.setError(getString(R.string.err_msg_city));
+            Utility.requestFocus(mPhoneEditText, AgentSignupActivity.this);
+            return;
+        }
+
+        if(mStateEditText.getText().toString().isEmpty()){
+            inputLayoutState.setError(getString(R.string.err_msg_state));
+            Utility.requestFocus(mStateEditText, AgentSignupActivity.this);
+            return;
+        }
+
+        if(mPincodeEditText.getText().toString().isEmpty() || mPincodeEditText.getText().toString().length()<6){
+            inputLayoutPincode.setError(getString(R.string.err_msg_pincode));
+            Utility.requestFocus(mPincodeEditText, AgentSignupActivity.this);
             return;
         }
 
