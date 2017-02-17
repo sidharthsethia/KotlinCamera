@@ -73,6 +73,7 @@ public class PatientListRecyclerViewAdapter extends RecyclerView.Adapter<Recycle
             public void onClick(View v) {
                 Intent i = new Intent(context, PatientActionsActivity.class);
                 i.putExtra("new_user",false);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });

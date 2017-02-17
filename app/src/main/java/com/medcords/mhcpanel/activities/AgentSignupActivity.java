@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -97,8 +99,15 @@ public class AgentSignupActivity extends AppCompatActivity {
                     return;
                 }
 
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AgentSignupActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("userLoggedIn", true);
+                editor.commit();
+
                 Intent i = new Intent(AgentSignupActivity.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
+                AgentSignupActivity.this.overridePendingTransition(0, 0);
                 finish();
             }
         });

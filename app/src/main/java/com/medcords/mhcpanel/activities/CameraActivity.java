@@ -264,6 +264,8 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UploadRecordsActivity.class);
         intent.putStringArrayListExtra("images_address_list", imagesAddressList);
         startActivity(intent);
+
+        finish();
     }
 
     @Override

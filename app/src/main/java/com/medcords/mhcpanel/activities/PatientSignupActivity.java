@@ -220,7 +220,10 @@ public class PatientSignupActivity extends AppCompatActivity implements DatePick
 
                         Intent i = new Intent(PatientSignupActivity.this, PatientActionsActivity.class);
                         i.putExtra("new_user",true);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
+
+                        finish();
                     }
                 });
 

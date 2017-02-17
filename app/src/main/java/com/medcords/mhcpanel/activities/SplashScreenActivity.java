@@ -1,8 +1,10 @@
 package com.medcords.mhcpanel.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -45,9 +47,15 @@ public class SplashScreenActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Intent i = new Intent(SplashScreenActivity.this, SplashActivity.class);
-            startActivity(i);
-
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
+            if(sharedPreferences.getBoolean("userLoggedIn",false)){
+                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(i);
+                SplashScreenActivity.this.overridePendingTransition(0, 0);
+            }else {
+                Intent i = new Intent(SplashScreenActivity.this, SplashActivity.class);
+                startActivity(i);
+            }
             // close this activity
             finish();
         }

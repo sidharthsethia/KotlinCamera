@@ -1,6 +1,8 @@
 package com.medcords.mhcpanel.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,8 +78,15 @@ public class AgentLoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AgentLoginActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("userLoggedIn", true);
+                editor.commit();
+
                 Intent i = new Intent(AgentLoginActivity.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
+                AgentLoginActivity.this.overridePendingTransition(0, 0);
                 finish();
 
             }

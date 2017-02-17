@@ -2,7 +2,10 @@ package com.medcords.mhcpanel.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -241,12 +244,30 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
+                Log.d("clicked : ", Integer.toString(position));
                 switch (position){
                     case 0:
                         break;
                     case 2:
                         break;
-                    case 4:
+                    case 5:
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("userLoggedIn", false);
+                        editor.commit();
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent i = new Intent(MainActivity.this, SplashActivity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
+                                MainActivity.this.overridePendingTransition(0, 0);
+                            }
+                        },200);
+
                         break;
                     default:
                         break;
