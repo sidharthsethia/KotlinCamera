@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,11 +33,19 @@ import android.widget.Toast;
 import com.google.android.gms.vision.text.Text;
 import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.adapters.ImageAdapter;
+import com.medcords.mhcpanel.database.DatabaseHandler;
+import com.medcords.mhcpanel.database.ImageRecord;
+import com.medcords.mhcpanel.utilities.Constants;
+import com.medcords.mhcpanel.utilities.Utility;
 import com.medcords.mhcpanel.views.DatePickerFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import eu.fiskur.chipcloud.ChipCloud;
 import eu.fiskur.chipcloud.ChipListener;
@@ -51,6 +60,10 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
     private EditText mDoctorEditText, mReportTypeText, mDateEditText;
     private RadioGroup mDocTypeRadioGroup;
     private Button mUploadButton;
+
+    private long recordsDate;
+
+    //Presently hardcoded. To be fetched from shared preferences or via intent.
     private int medCordsId = 1234;
 
     @Override
@@ -112,6 +125,35 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
+
+                        DatabaseHandler db = new DatabaseHandler(UploadRecordsActivity.this);
+
+                        String batchId = UUID.randomUUID().toString();
+
+                        for (String path : imagesAddressList){
+                            ImageRecord imageRecord = new ImageRecord();
+
+                            imageRecord.setPath(path);
+                            imageRecord.setBatchId(batchId);
+                            imageRecord.setDoctorName(mDoctorEditText.getText().toString().trim());
+                            imageRecord.setPatientId(Integer.toString(medCordsId));
+                            imageRecord.setDocType(getDocType());
+                            imageRecord.setReportType(mReportTypeText.getText().toString());
+                            imageRecord.setDate(Long.toString(recordsDate));
+                            imageRecord.setTags(Utility.convertArrayToString(selectedTags.toArray(new String[selectedTags.size()])));
+                            imageRecord.setHasBeenUploaded(Constants.FLAG_UPLOAD_FALSE);
+                            db.addImage(imageRecord);
+                            imageRecord.setId(db.getImageId(path));
+                        }
+
+                        /*List<ImageRecord> imageRecords = db.getAllImages();
+                        db.deleteImage(imageRecords.get(3));
+                        for (ImageRecord imageRecord : imageRecords){
+                            Log.e("Id", "" + imageRecord.getId());
+                        }*/
+
+                        //Log.e("Db size", "" + db.getImageCount());
+
                         Toast toast = Toast.makeText(UploadRecordsActivity.this,"Records uploaded successfully.", Toast.LENGTH_LONG);
                         toast.show();
 
@@ -230,7 +272,7 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
+        recordsDate = c.getTimeInMillis();
         String date = day+"/"+(month+1)+"/"+year;
         mDateEditText.setText(date);
 
@@ -285,6 +327,13 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH,day);
+        calendar.set(Calendar.MONTH,month);
+        calendar.set(Calendar.YEAR,year);
+        recordsDate = calendar.getTimeInMillis();
+
         String date = day+"/"+(month+1)+"/"+year;
         mDateEditText.setText(date);
     }
@@ -319,5 +368,18 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
         startActivity(i);
 
         finish();
+    }
+
+    private String getDocType(){
+        switch (mDocTypeRadioGroup.getCheckedRadioButtonId()){
+            case R.id.input_report :
+                return "Report";
+            case R.id.input_prescription :
+                return "Prescription";
+            case R.id.input_bill :
+                return "Bill";
+            default:
+                return "Prescription";
+        }
     }
 }

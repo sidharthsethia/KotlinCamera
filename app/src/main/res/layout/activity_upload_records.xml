@@ -59,11 +59,11 @@
 
         <RadioButton
             android:layout_width="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.4"
             android:text="Prescription"
             android:id="@+id/input_prescription"
-            android:paddingLeft="16dp"
-            android:textSize="16sp"
+            android:paddingLeft="4dp"
+            android:textSize="15sp"
             android:checked="true"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
@@ -73,8 +73,18 @@
             android:layout_weight="1"
             android:text="Report"
             android:id="@+id/input_report"
-            android:paddingLeft="16dp"
-            android:textSize="16sp"
+            android:paddingLeft="4dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorTextSecondary"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:text="Bill"
+            android:id="@+id/input_bill"
+            android:paddingLeft="4dp"
+            android:textSize="15sp"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
 

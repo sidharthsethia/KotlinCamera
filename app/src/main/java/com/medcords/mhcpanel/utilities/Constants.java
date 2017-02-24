@@ -14,4 +14,7 @@ public class Constants {
     public static final String IMAGE_DIRECTORY_NAME = "MedCords";
     public static final String SEND_PHOTO_URI_INTENT = "send-photo-uri";
     public static final String VARIABLE_URI = "uri";
+
+    public static final int FLAG_UPLOAD_TRUE = 0;
+    public static final int FLAG_UPLOAD_FALSE = 1;
 }
