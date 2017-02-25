@@ -58,7 +58,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         List<Integer> supportedPreviewFormats = params.getSupportedPreviewFormats();
         Iterator<Integer> supportedPreviewFormatsIterator = supportedPreviewFormats.iterator();
         while(supportedPreviewFormatsIterator.hasNext()){
-            Integer previewFormat =supportedPreviewFormatsIterator.next();
+            Integer previewFormat = supportedPreviewFormatsIterator.next();
             if (previewFormat == ImageFormat.YV12) {
                 params.setPreviewFormat(previewFormat);
             }

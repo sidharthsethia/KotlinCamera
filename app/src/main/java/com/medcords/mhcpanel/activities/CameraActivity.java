@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.medcords.mhcpanel.R;
+import com.medcords.mhcpanel.utilities.Constants;
 import com.medcords.mhcpanel.utilities.Utility;
 import com.medcords.mhcpanel.views.CameraPreview;
 
@@ -109,14 +110,14 @@ public class CameraActivity extends AppCompatActivity {
                 }
             }
             //Bitmap picture = BitmapFactory.decodeByteArray(data, 0, data.length);
-            File mPictureFile = Utility.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+            File mPictureFile = Utility.getOutputMediaFile(Constants.MEDIA_TYPE_IMAGE);
             try {
 
                 FileOutputStream out = new FileOutputStream(mPictureFile);
                 picture.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
                 Bitmap compressedImageBitmap = Compressor.getDefault(CameraActivity.this).compressToBitmap(mPictureFile);
-                File mCompressedPictureFile = Utility.getOutputMediaFile(MEDIA_TYPE_VIDEO);
+                File mCompressedPictureFile = Utility.getOutputMediaFile(Constants.MEDIA_TYPE_CMP_IMAGE);
                 FileOutputStream out2 = new FileOutputStream(mCompressedPictureFile);
                 compressedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out2);
 

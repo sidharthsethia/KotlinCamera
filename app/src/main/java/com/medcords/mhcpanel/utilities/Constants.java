@@ -17,4 +17,7 @@ public class Constants {
 
     public static final int FLAG_UPLOAD_TRUE = 0;
     public static final int FLAG_UPLOAD_FALSE = 1;
+
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_CMP_IMAGE = 2;
 }

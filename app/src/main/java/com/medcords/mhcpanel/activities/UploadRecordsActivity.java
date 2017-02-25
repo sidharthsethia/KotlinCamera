@@ -35,6 +35,7 @@ import com.medcords.mhcpanel.R;
 import com.medcords.mhcpanel.adapters.ImageAdapter;
 import com.medcords.mhcpanel.database.DatabaseHandler;
 import com.medcords.mhcpanel.database.ImageRecord;
+import com.medcords.mhcpanel.services.ImageUploadService;
 import com.medcords.mhcpanel.utilities.Constants;
 import com.medcords.mhcpanel.utilities.Utility;
 import com.medcords.mhcpanel.views.DatePickerFragment;
@@ -144,6 +145,10 @@ public class UploadRecordsActivity extends AppCompatActivity implements DatePick
                             imageRecord.setHasBeenUploaded(Constants.FLAG_UPLOAD_FALSE);
                             db.addImage(imageRecord);
                             imageRecord.setId(db.getImageId(path));
+
+                            Intent uploadImageIntent = new Intent(UploadRecordsActivity.this, ImageUploadService.class);
+                            uploadImageIntent.putExtra("imageId", imageRecord.getId());
+                            startService(uploadImageIntent);
                         }
 
                         /*List<ImageRecord> imageRecords = db.getAllImages();

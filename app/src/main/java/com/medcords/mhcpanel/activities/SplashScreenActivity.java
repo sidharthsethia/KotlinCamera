@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.medcords.mhcpanel.R;
+import com.medcords.mhcpanel.services.SetAlarmService;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -47,7 +49,20 @@ public class SplashScreenActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
+
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
+
+            if ( ! sharedPreferences.contains("uploadImageAlarmServiceStarted") || ! sharedPreferences.getBoolean("uploadImageAlarmServiceStarted",false) ) {
+                Log.e("uploadImageAlarmService","notSet");
+                Intent alarmService = new Intent(SplashScreenActivity.this, SetAlarmService.class);
+                startService(alarmService);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("uploadImageAlarmServiceStarted",true);
+                editor.commit();
+                Log.e("uploadImageAlarmService","Set");
+            }
+
+
             if(sharedPreferences.getBoolean("userLoggedIn",false)){
                 Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(i);
@@ -56,6 +71,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent i = new Intent(SplashScreenActivity.this, SplashActivity.class);
                 startActivity(i);
             }
+
+
+
+
             // close this activity
             finish();
         }

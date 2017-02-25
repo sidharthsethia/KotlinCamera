@@ -177,12 +177,12 @@ public class Utility {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmssS",
                 Locale.getDefault()).format(new Date());
         File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE) {
+        if (type == Constants.MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
                     + "IMG_" + timeStamp + ".jpg");
-        } else if (type == MEDIA_TYPE_VIDEO) {
+        } else if (type == Constants.MEDIA_TYPE_CMP_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + ".jpg");
+                    + "MED_IMG_" + timeStamp + ".jpg");
         } else {
             return null;
         }

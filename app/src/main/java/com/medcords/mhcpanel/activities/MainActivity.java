@@ -244,7 +244,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
-                Log.d("clicked : ", Integer.toString(position));
+                Log.d("clicked", Integer.toString(position));
                 switch (position){
                     case 0:
                         break;
