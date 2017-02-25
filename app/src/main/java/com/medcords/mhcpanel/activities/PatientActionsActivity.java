@@ -102,6 +102,7 @@ public class PatientActionsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_end_session:
                 endSession();
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -117,9 +118,11 @@ public class PatientActionsActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-
-        finish();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        endSession();
+    }
 }
