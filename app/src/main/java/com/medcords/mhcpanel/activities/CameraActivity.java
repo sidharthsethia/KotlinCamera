@@ -46,7 +46,7 @@ public class CameraActivity extends AppCompatActivity {
     private FrameLayout preview;
 
     private Boolean flashOn = false;
-    private Boolean singleModeOn = true;
+    private Boolean singleModeOn = false;
 
     private int noOfImagesTaken = 0;
     private ArrayList<String> imagesAddressList;
@@ -187,6 +187,9 @@ public class CameraActivity extends AppCompatActivity {
                 openUploadRecordsActivity();
             }
         });
+
+        singleModeDot.setVisibility(View.INVISIBLE);
+        batchModeDot.setVisibility(View.VISIBLE);
 
         singleModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
