@@ -23,7 +23,7 @@ public class AgentLoginActivity extends AppCompatActivity {
     private Button mLoginButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText;
     private ProgressBar mProgressBar;
-    private TextView mResendOTPTextView, mSignupTextView, mOTPTitleTextView;
+    private TextView mResendOTPTextView, mSignupTextView, mOTPTitleTextView, mCancelTextView;
     private TextInputLayout inputLayoutPhone, inputLayoutOTP;
 
 
@@ -41,6 +41,7 @@ public class AgentLoginActivity extends AppCompatActivity {
         mPhoneEditText = (EditText) findViewById(R.id.input_mobile);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mOTPTitleTextView = (TextView) findViewById(R.id.otp_text_view);
+        mCancelTextView = (TextView) findViewById(R.id.cancel_textview);
         mResendOTPTextView = (TextView) findViewById(R.id.resend_otp_text_view);
         mSignupTextView = (TextView) findViewById(R.id.signup_text_view);
         inputLayoutPhone = (TextInputLayout) findViewById(R.id.input_layout_mobile);
@@ -49,6 +50,8 @@ public class AgentLoginActivity extends AppCompatActivity {
         mOTPLayout.setVisibility(View.GONE);
         mLoginLayout.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
+
+        mCancelTextView.setVisibility(View.VISIBLE);
 
         mOTPEditText.setBackgroundDrawable(getResources().getDrawable(R.drawable.apptheme_edit_text_holo_light));
 
@@ -89,6 +92,15 @@ public class AgentLoginActivity extends AppCompatActivity {
                 AgentLoginActivity.this.overridePendingTransition(0, 0);
                 finish();
 
+            }
+        });
+
+        mCancelTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOTPLayout.setVisibility(View.GONE);
+                mLoginLayout.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             }
         });
 

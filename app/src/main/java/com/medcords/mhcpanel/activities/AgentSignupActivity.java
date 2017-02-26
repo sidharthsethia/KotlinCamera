@@ -37,7 +37,7 @@ public class AgentSignupActivity extends AppCompatActivity {
     private Button mSignupButton, mOTPSubmitButton;
     private EditText mOTPEditText, mPhoneEditText, mNameEditText, mEmailEditText,mCityEditText, mStateEditText, mPincodeEditText;
     private ProgressBar mProgressBar;
-    private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView;
+    private TextView mResendOTPTextView, mLoginTextView, mOTPTitleTextView,mCancelTextView;
     private CircularImageView mProfileImageView;
     private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPhone, inputLayoutState, inputLayoutCity, inputLayoutPincode, inputLayoutOTP;
     private Uri profilePhotoUri;
@@ -52,6 +52,7 @@ public class AgentSignupActivity extends AppCompatActivity {
         mSignupButton = (Button) findViewById(R.id.register_button);
         mOTPSubmitButton = (Button) findViewById(R.id.submit_button);
         mOTPEditText = (EditText) findViewById(R.id.input_otp);
+        mCancelTextView = (TextView) findViewById(R.id.cancel_textview);
         mPhoneEditText = (EditText) findViewById(R.id.input_mobile);
         mNameEditText = (EditText) findViewById(R.id.input_name);
         mEmailEditText = (EditText) findViewById(R.id.input_email);
@@ -77,6 +78,8 @@ public class AgentSignupActivity extends AppCompatActivity {
         mSignupLayout.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
 
+        mCancelTextView.setVisibility(View.VISIBLE);
+
         mOTPEditText.setBackgroundDrawable(getResources().getDrawable(R.drawable.apptheme_edit_text_holo_light));
 
         mNameEditText.addTextChangedListener(new SignupTextWatcher(mNameEditText));
@@ -91,6 +94,14 @@ public class AgentSignupActivity extends AppCompatActivity {
             }
         });
 
+        mCancelTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOTPLayout.setVisibility(View.GONE);
+                mSignupLayout.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+            }
+        });
 
         mOTPSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
