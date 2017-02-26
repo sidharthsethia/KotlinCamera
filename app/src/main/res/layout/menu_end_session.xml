@@ -6,5 +6,5 @@
     android:gravity="center"
     android:orientation="vertical"
     android:text="End Session"
-    android:paddingRight="16dp"
+    android:paddingRight="@dimen/activity_vertical_margin"
     android:textColor="@android:color/white" />

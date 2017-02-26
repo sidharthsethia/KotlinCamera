@@ -4,8 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:fillViewport="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <LinearLayout
         android:id="@+id/activity_upload_records"
@@ -26,7 +27,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-
+                android:textSize="@dimen/text_size_small"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:text="Patient :"/>
@@ -34,6 +35,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="2"
+                android:textSize="@dimen/text_size_small"
                 android:id="@+id/patient_name"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextPrimary"
@@ -49,6 +51,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:textSize="@dimen/text_size_small"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:text="Medcords Id :"/>
@@ -57,6 +60,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:id="@+id/patient_id"
+                android:textSize="@dimen/text_size_small"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextPrimary"
                 android:text="123242151"/>
@@ -66,10 +70,10 @@
 
 
         <View
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="@dimen/divider_height_small"
             android:background="@color/finestGray"/>
 
         <android.support.design.widget.TextInputLayout
@@ -84,31 +88,32 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
+                android:textSize="@dimen/text_size_medium"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="text"
                 android:hint="With Doctor" />
         </android.support.design.widget.TextInputLayout>
 
         <View
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="@dimen/divider_height_small"
             android:background="@color/finestGray"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_size_extra_small"
             android:textStyle="bold"
-            android:padding="8dp"
+            android:padding="@dimen/margin_small"
             android:text="FILTERS"/>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -118,14 +123,14 @@
             android:layout_height="wrap_content">
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
+                android:layout_width="@dimen/margin_extra_small"
+                android:layout_height="@dimen/margin_extra_small"
                 android:background="@color/colorTextSecondary"
                 android:layout_gravity="center" />
 
             <TextView
-                android:paddingLeft="16dp"
-                android:textSize="14sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date Range"/>
@@ -135,10 +140,10 @@
         <com.medcords.mhcpanel.views.RadioGroupGridView
 
             android:layout_width="match_parent"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/margin_small"
             android:id="@+id/date_radio_group"
-            android:paddingBottom="8dp"
-            android:paddingLeft="16dp"
+            android:paddingBottom="@dimen/margin_small"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:layout_height="wrap_content">
 
             <TableRow android:layout_width="match_parent"
@@ -147,7 +152,7 @@
                 <RadioButton
                     android:id="@+id/rad1"
                     android:layout_weight="1"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -156,6 +161,7 @@
                 <RadioButton
                     android:id="@+id/rad2"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -168,6 +174,7 @@
                 <RadioButton
                     android:id="@+id/rad3"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -176,6 +183,7 @@
                 <RadioButton
                     android:id="@+id/rad4"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,6 +196,7 @@
                 <RadioButton
                     android:id="@+id/rad5"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -196,6 +205,7 @@
                 <RadioButton
                     android:id="@+id/rad6"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -208,8 +218,8 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -219,14 +229,14 @@
                 android:layout_height="wrap_content">
 
                 <View
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
+                    android:layout_width="@dimen/margin_extra_small"
+                    android:layout_height="@dimen/margin_extra_small"
                     android:background="@color/colorTextSecondary"
                     android:layout_gravity="center" />
 
                 <TextView
-                    android:paddingLeft="16dp"
-                    android:textSize="14sp"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:textSize="@dimen/text_size_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Document Type"/>
@@ -234,13 +244,14 @@
             </LinearLayout>
 
             <TableRow android:layout_width="match_parent"
-                android:paddingTop="8dp"
-                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content">
 
                 <CheckBox
                     android:id="@+id/report_type"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -249,6 +260,7 @@
                 <CheckBox
                     android:id="@+id/bill_type"
                     android:layout_weight="1"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColor="@color/colorTextSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -259,7 +271,8 @@
                 android:id="@+id/prescription_type"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -272,8 +285,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
         android:id="@+id/report_type_layout"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -285,14 +298,14 @@
             android:layout_height="wrap_content">
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
+                android:layout_width="@dimen/margin_extra_small"
+                android:layout_height="@dimen/margin_extra_small"
                 android:background="@color/colorTextSecondary"
                 android:layout_gravity="center" />
 
             <TextView
-                android:paddingLeft="16dp"
-                android:textSize="14sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Report Type"/>
@@ -301,15 +314,15 @@
 
         <eu.fiskur.chipcloud.ChipCloud
             android:id="@+id/report_type_chip_cloud"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
         android:id="@+id/body_tags_type_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -320,14 +333,14 @@
             android:layout_height="wrap_content">
 
             <View
-                android:layout_width="4dp"
-                android:layout_height="4dp"
+                android:layout_width="@dimen/margin_extra_small"
+                android:layout_height="@dimen/margin_extra_small"
                 android:background="@color/colorTextSecondary"
                 android:layout_gravity="center" />
 
             <TextView
-                android:paddingLeft="16dp"
-                android:textSize="14sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Body Tags"/>
@@ -336,7 +349,7 @@
 
         <eu.fiskur.chipcloud.ChipCloud
             android:id="@+id/body_tags_chip_cloud"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -344,15 +357,16 @@
 
         <Button
             android:id="@+id/share_button"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="@dimen/margin_phone_layout_login"
             android:textStyle="bold"
             android:background="@color/colorPrimaryDark"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/margin_phone_layout_login"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="@dimen/text_size_small"
             android:fontFamily="sans-serif"
             android:text="Share"
             android:textColor="@android:color/white" />

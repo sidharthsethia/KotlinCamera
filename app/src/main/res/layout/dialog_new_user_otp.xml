@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/name_text_view"
         android:textColor="@color/colorTextPrimary"
         android:fontFamily="sans-serif-condensed"
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/detail_text_view"
         android:visibility="gone"
         android:layout_below="@+id/name_text_view"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/subscription_text_view"
         android:textColor="@color/colorTextPrimary"
         android:fontFamily="sans-serif-condensed"
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:layout_below="@+id/subscription_text_view"
         android:id="@+id/otp_text_view"
         android:textColor="@color/colorTextPrimary"
@@ -67,19 +67,20 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_otp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/margin_phone_layout_login"
+        android:layout_marginRight="@dimen/margin_phone_layout_login"
         android:layout_below="@+id/otp_text_view"
         app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/input_otp"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/otp_edit_text_width"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:gravity="center"
+            android:textSize="@dimen/text_size_medium"
             android:textColor="@color/colorTextSecondary"
             android:singleLine="true"
             android:maxLength="4"
@@ -90,23 +91,24 @@
     <Button
         android:id="@+id/submit_button"
         android:layout_below="@+id/input_layout_otp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
         android:textStyle="bold"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/margin_phone_layout_login"
+        android:layout_marginRight="@dimen/margin_phone_layout_login"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:layout_gravity="center"
         android:fontFamily="sans-serif"
         android:text="Submit"
+        android:textSize="@dimen/text_size_small"
         android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:layout_below="@+id/submit_button"
         android:id="@+id/resend_otp_text_view"
         android:textColor="@color/dark_grey"
@@ -117,11 +119,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size_extra_small"
         android:layout_below="@+id/resend_otp_text_view"
         android:id="@+id/cancel_text_view"
         android:textColor="@color/colorTextSecondary"
-        android:padding="16dp"
+        android:padding="@dimen/activity_vertical_margin"
         android:text="Cancel"
         android:layout_height="wrap_content" />
 

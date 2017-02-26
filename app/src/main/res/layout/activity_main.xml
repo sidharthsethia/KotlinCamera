@@ -33,26 +33,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:gravity="center"
             android:layout_height="0dp">
 
             <ImageButton
-                android:layout_width="120dp"
+                android:layout_width="@dimen/circle_action_item_dimension"
                 android:id="@+id/add_user_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button"
                 android:src="@mipmap/add_user_grey"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_height="120dp" />
+                android:layout_height="@dimen/circle_action_item_dimension" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add User"
+                android:text="@string/add_patient_text"
                 android:layout_below="@+id/add_user_button"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_centerHorizontal="true"/>
 
@@ -60,32 +59,31 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="@color/colorDivider"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_height="0dp">
 
             <ImageButton
-                android:layout_width="120dp"
+                android:layout_width="@dimen/circle_action_item_dimension"
                 android:id="@+id/search_user_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button"
                 android:src="@mipmap/search_user_grey"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_height="120dp" />
+                android:layout_height="@dimen/circle_action_item_dimension" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search Medcords User"
+                android:text="@string/search_patient_text"
                 android:layout_below="@+id/search_user_button"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_centerHorizontal="true"/>
 

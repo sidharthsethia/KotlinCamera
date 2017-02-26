@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
+    android:layout_centerInParent="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,27 +10,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/otp_text_view"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-condensed"
-        android:padding="@dimen/activity_vertical_margin"
-        android:text="Enter the OTP sent to 7023479993"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/enter_otp_text"
         android:layout_height="wrap_content" />
 
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_otp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/margin_phone_layout_login"
+        android:layout_marginRight="@dimen/margin_phone_layout_login"
         android:layout_below="@+id/otp_text_view"
         app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/input_otp"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/otp_edit_text_width"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -38,46 +42,48 @@
             android:singleLine="true"
             android:maxLength="4"
             android:textColorHint="@color/white"
-            android:hint="OTP" />
+            android:hint="@string/hint_otp" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/submit_button"
         android:layout_below="@+id/input_layout_otp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="@dimen/margin_phone_layout_login"
         android:textStyle="bold"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="@dimen/margin_phone_layout_login"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif"
-        android:text="Submit"
+        android:text="@string/submit"
+        android:textSize="@dimen/text_size_small"
         android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_small"
         android:layout_below="@+id/submit_button"
         android:id="@+id/resend_otp_text_view"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:padding="@dimen/activity_vertical_margin"
-        android:text="Didnt receive OTP? Resend."
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/otp_resent_text"
         android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size_extra_small"
         android:layout_below="@+id/resend_otp_text_view"
         android:id="@+id/cancel_textview"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:visibility="gone"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:layout_height="wrap_content" />
 
 

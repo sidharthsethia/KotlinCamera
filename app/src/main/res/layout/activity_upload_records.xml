@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:fillViewport="true"
     tools:context="com.medcords.mhcpanel.activities.UploadRecordsActivity"
     android:layout_height="match_parent">
 
@@ -26,16 +27,16 @@
         android:layout_height="wrap_content"/>
 
     <View
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="@dimen/divider_height_small"
         android:background="@color/finestGray"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_doctor"
         android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextSecondary"
             android:singleLine="true"
+            android:textSize="@dimen/text_size_medium"
             android:textColorHint="@color/colorTextSecondary"
             android:inputType="text"
             android:hint="Doctor" />
@@ -54,7 +56,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:id="@+id/input_doc_type"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:layout_height="wrap_content">
 
         <RadioButton
@@ -62,8 +64,8 @@
             android:layout_weight="1.4"
             android:text="Prescription"
             android:id="@+id/input_prescription"
-            android:paddingLeft="4dp"
-            android:textSize="15sp"
+            android:paddingLeft="@dimen/margin_extra_small"
+            android:textSize="@dimen/text_size_small"
             android:checked="true"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
@@ -73,8 +75,8 @@
             android:layout_weight="1"
             android:text="Report"
             android:id="@+id/input_report"
-            android:paddingLeft="4dp"
-            android:textSize="15sp"
+            android:paddingLeft="@dimen/margin_extra_small"
+            android:textSize="@dimen/text_size_small"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
 
@@ -83,8 +85,8 @@
             android:layout_weight="0.8"
             android:text="Bill"
             android:id="@+id/input_bill"
-            android:paddingLeft="4dp"
-            android:textSize="15sp"
+            android:paddingLeft="@dimen/margin_extra_small"
+            android:textSize="@dimen/text_size_small"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
 
@@ -94,7 +96,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_type_of_record"
         android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
@@ -104,6 +106,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextSecondary"
             android:singleLine="true"
+            android:textSize="@dimen/text_size_medium"
             android:textColorHint="@color/colorTextSecondary"
             android:inputType="text"
             android:hint="Report Type" />
@@ -112,7 +115,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_date"
         android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         app:errorTextAppearance="@style/error_appearance"
         android:layout_height="wrap_content">
 
@@ -122,6 +125,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextSecondary"
             android:singleLine="true"
+            android:textSize="@dimen/text_size_medium"
             android:textColorHint="@color/colorTextSecondary"
             android:inputType="date"
             android:hint="Date" />
@@ -129,19 +133,20 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/no_tags_added"
             android:layout_width="match_parent"
+            android:textSize="@dimen/text_size_medium"
             android:layout_height="wrap_content"
             android:text="No Tags added. Select from below."/>
 
         <eu.fiskur.chipcloud.ChipCloud
             android:id="@+id/chip_cloud"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -149,20 +154,20 @@
 
 
     <Button
-    android:id="@+id/upload_button"
-    android:layout_below="@+id/input_layout_mobile"
-    android:layout_marginTop="16dp"
-    style="@style/Widget.AppCompat.Button.Colored"
-    android:layout_width="match_parent"
-    android:layout_marginLeft="40dp"
-    android:textStyle="bold"
-    android:background="@color/colorPrimaryDark"
-    android:layout_marginRight="40dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:fontFamily="sans-serif"
-    android:text="Upload"
-    android:textColor="@android:color/white" />
+        android:id="@+id/upload_button"
+        android:layout_below="@+id/input_layout_mobile"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/margin_phone_layout_login"
+        android:textStyle="bold"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginRight="@dimen/margin_phone_layout_login"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:text="Upload"
+        android:textColor="@android:color/white" />
 
 
 

@@ -14,14 +14,14 @@
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/camera_action_layout_height"
         android:background="@color/materialize_primary_dark"
         android:layout_gravity="center">
 
         <ImageButton
             android:id="@+id/button_capture"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/camera_button_dimension"
+            android:layout_height="@dimen/camera_button_dimension"
             android:src="@mipmap/camera"
             android:scaleType="fitXY"
             android:background="@color/transparent"
@@ -36,9 +36,10 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/checkmark_dimension"
+                android:layout_height="@dimen/checkmark_dimension"
                 android:visibility="gone"
+                android:scaleType="fitXY"
                 android:background="@color/transparent"
                 android:src="@mipmap/checkmark"
                 android:id="@+id/done"/>
@@ -47,24 +48,35 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/single_mode_layout"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="@dimen/margin_small"
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/mode_dimension"
+                    android:layout_height="@dimen/mode_dimension"
                     android:scaleType="fitXY"
                     android:id="@+id/single_mode"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="@dimen/margin_extra_small"
                     android:background="@color/transparent"
                     android:src="@mipmap/single_image"/>
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/single"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_extra_small"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_extra_small"
+                    android:layout_height="wrap_content" />
+
                 <View
-                    android:layout_width="4dp"
+                    android:layout_width="@dimen/margin_extra_small"
                     android:id="@+id/single_mode_dot"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_gravity="center_horizontal"
                     android:background="@color/white"
-                    android:layout_height="4dp"/>
+                    android:layout_height="@dimen/margin_extra_small"/>
 
             </LinearLayout>
 
@@ -73,25 +85,35 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/batch_mode_layout"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/mode_dimension"
+                    android:layout_height="@dimen/mode_dimension"
                     android:scaleType="fitXY"
                     android:id="@+id/batch_mode"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="@dimen/margin_extra_small"
                     android:background="@color/transparent"
                     android:src="@mipmap/multi_image"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/batch"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_extra_small"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_extra_small"
+                    android:layout_height="wrap_content" />
+
                 <View
-                    android:layout_width="4dp"
+                    android:layout_width="@dimen/margin_extra_small"
                     android:visibility="invisible"
                     android:id="@+id/batch_mode_dot"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_gravity="center_horizontal"
                     android:background="@color/white"
-                    android:layout_height="4dp"/>
+                    android:layout_height="@dimen/margin_extra_small"/>
 
             </LinearLayout>
 
@@ -101,8 +123,8 @@
             android:layout_width="match_parent"
             android:layout_toLeftOf="@+id/button_capture"
             android:orientation="horizontal"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_height="wrap_content">
@@ -113,24 +135,25 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="@dimen/checkmark_dimension"
                     android:id="@+id/preview"
-                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
                     android:src="@mipmap/single_image"
-                    android:layout_height="40dp" />
+                    android:layout_height="@dimen/checkmark_dimension" />
 
                 <TextView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/indicator_height"
+                    android:layout_height="@dimen/indicator_height"
                     android:text="2"
                     android:visibility="visible"
                     android:id="@+id/photo_number_indicator"
                     android:gravity="center"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold"
                     android:textColor="@color/materialize_primary_dark"
                     android:layout_toRightOf="@+id/preview"
                     android:layout_alignTop="@+id/preview"
-                    android:layout_marginLeft="-16dp"
+                    android:layout_marginLeft="@dimen/indicator_margin_left"
                     android:background="@drawable/curved_rectangle"/>
 
             </RelativeLayout>
@@ -141,8 +164,8 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/mode_dimension"
+                    android:layout_height="@dimen/mode_dimension"
                     android:scaleType="fitXY"
                     android:id="@+id/flash_button"
                     android:layout_centerInParent="true"

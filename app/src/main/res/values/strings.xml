@@ -2,6 +2,14 @@
     <string name="app_name">MHCPanel</string>
 
     <string name="hint_mobile">Mobile</string>
+    <string name="hint_otp">OTP</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_city">City</string>
+    <string name="hint_state">State</string>
+    <string name="hint_pincode">Pincode</string>
+    <string name="agent_type_mhc">MHC</string>
+    <string name="agent_type_call_center">Call Center</string>
 
     <string name="err_msg_name">Enter your full name</string>
     <string name="err_msg_email">Enter valid email address</string>
@@ -12,5 +20,24 @@
     <string name="err_msg_otp">Enter valid OTP</string>
 
     <string name="otp_title">Enter the OTP sent to &lt;b> %1$s &lt;/b>.</string>
+
+    <string name="login">Login</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="single">Single</string>
+    <string name="batch">Batch</string>
+    <string name="otp_resent_text">Didnt receive OTP? Resend.</string>
+    <string name="signup_text">New agent? Sign up.</string>
+    <string name="login_text">Existing agent? Log in.</string>
+    <string name="enter_otp_text">Enter the OTP sent to 7023479993</string>
+
+    <string name="add_patient_text">Add Patient</string>
+    <string name="search_patient_text">Search Patient</string>
+    <string name="upload_records_text">Upload records</string>
+    <string name="share_records_text">Share Records</string>
+    <string name="edit_patient_details_text">Edit Patient Details</string>
+
+    <string name="patient_list_title">&lt;b> %1$s &lt;/b> patients found.</string>
 
 </resources>

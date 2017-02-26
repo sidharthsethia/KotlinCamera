@@ -22,26 +22,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:gravity="center"
             android:layout_height="0dp">
 
             <ImageButton
-                android:layout_width="96dp"
+                android:layout_width="@dimen/circle_action_item_dimension_small"
                 android:id="@+id/share_records_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button"
                 android:src="@mipmap/file_grey"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_height="96dp" />
+                android:layout_height="@dimen/circle_action_item_dimension_small" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Share Records"
+                android:text="@string/share_records_text"
                 android:layout_below="@+id/share_records_button"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_centerHorizontal="true"/>
 
@@ -49,32 +48,31 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="@color/colorDivider"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_height="0dp">
 
             <ImageButton
-                android:layout_width="96dp"
+                android:layout_width="@dimen/circle_action_item_dimension_small"
                 android:id="@+id/upload_records_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button"
                 android:src="@mipmap/upload_grey"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_height="96dp" />
+                android:layout_height="@dimen/circle_action_item_dimension_small" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload records"
+                android:text="@string/upload_records_text"
                 android:layout_below="@+id/upload_records_button"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_centerHorizontal="true"/>
 
@@ -82,32 +80,31 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="@color/colorDivider"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_height="0dp">
 
             <ImageButton
-                android:layout_width="96dp"
+                android:layout_width="@dimen/circle_action_item_dimension_small"
                 android:id="@+id/edit_patient_button"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button"
                 android:src="@mipmap/edit_grey"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_height="96dp" />
+                android:layout_height="@dimen/circle_action_item_dimension_small" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Patient Details"
+                android:text="@string/edit_patient_details_text"
                 android:layout_below="@+id/edit_patient_button"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextPrimary"
                 android:layout_centerHorizontal="true"/>
 

@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:scrollbars="none"
+    android:fillViewport="true"
     tools:context="com.medcords.mhcpanel.activities.PatientSignupActivity">
 
     <LinearLayout
@@ -17,20 +18,21 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/profile_photo_width"
+                android:layout_height="@dimen/profile_photo_height"
                 android:layout_gravity="center"
                 android:id="@+id/input_photo"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 app:civ_border_color="@color/colorDivider"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/user"
-                app:civ_border_width="2dp" />
+                app:civ_border_width="@dimen/profile_photo_border_width" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_name"
@@ -47,6 +49,7 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorTextSecondary"
                     android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColorHint="@color/colorTextSecondary"
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
@@ -55,7 +58,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:id="@+id/input_gender"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_height="wrap_content">
 
             <RadioButton
@@ -63,8 +66,8 @@
                 android:layout_weight="1"
                 android:text="Male"
                 android:id="@+id/input_male"
-                android:paddingLeft="16dp"
-                android:textSize="16sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
 
@@ -73,8 +76,8 @@
                 android:layout_weight="1"
                 android:text="Female"
                 android:id="@+id/input_female"
-                android:paddingLeft="16dp"
-                android:textSize="16sp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
         </RadioGroup>
@@ -83,7 +86,7 @@
             android:id="@+id/input_layout_mobile"
             android:layout_width="match_parent"
             android:layout_below="@+id/input_layout_email"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
@@ -93,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
+                android:textSize="@dimen/text_size_medium"
                 android:maxLength="10"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="phone"
@@ -103,7 +107,7 @@
             android:id="@+id/input_layout_dob"
             android:layout_width="match_parent"
             android:layout_below="@+id/input_layout_mobile"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
@@ -113,13 +117,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
+                android:textSize="@dimen/text_size_medium"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="date"
                 android:hint="DOB" />
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox
-            android:textSize="12sp"
+            android:textSize="@dimen/text_size_extra_small"
             android:id="@+id/age_unknown_checkbox"
             android:checkMark="@color/colorPrimaryDark"
             android:checked="false"
@@ -132,7 +137,7 @@
             android:layout_width="match_parent"
             android:visibility="gone"
             android:layout_below="@+id/input_layout_mobile"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
@@ -143,6 +148,7 @@
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
                 android:maxLength="3"
+                android:textSize="@dimen/text_size_medium"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="date"
                 android:hint="Apprximate Age" />
@@ -153,7 +159,7 @@
                 android:id="@+id/input_layout_place"
                 android:layout_width="match_parent"
                 android:layout_below="@+id/input_layout_dob"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_small"
                 app:errorTextAppearance="@style/error_appearance"
                 android:layout_height="wrap_content">
 
@@ -164,6 +170,7 @@
                     android:inputType="textEmailAddress"
                     android:textColor="@color/colorTextSecondary"
                     android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium"
                     android:textColorHint="@color/colorTextSecondary"
                     android:hint="Place of Living" />
             </android.support.design.widget.TextInputLayout>
@@ -172,7 +179,7 @@
             android:id="@+id/input_layout_aadhar"
             android:layout_width="match_parent"
             android:layout_below="@+id/input_layout_place"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
@@ -183,6 +190,7 @@
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
                 android:maxLength="12"
+                android:textSize="@dimen/text_size_medium"
                 android:textColorHint="@color/colorTextSecondary"
                 android:inputType="phone"
                 android:hint="Aadhar ID" />
@@ -192,13 +200,14 @@
             android:id="@+id/input_layout_relationship"
             android:layout_width="match_parent"
             android:layout_below="@+id/input_layout_aadhar"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             app:errorTextAppearance="@style/error_appearance"
             android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/input_relationship"
                 android:layout_width="match_parent"
+                android:textSize="@dimen/text_size_medium"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSecondary"
                 android:singleLine="true"
@@ -209,9 +218,9 @@
 
         <TextView android:layout_width="match_parent"
             android:text="Subscription term"
-            android:paddingLeft="4dp"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
+            android:paddingLeft="@dimen/margin_extra_small"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginTop="@dimen/margin_small"
             android:textColor="@color/colorTextSecondary"
             android:layout_height="wrap_content" />
 
@@ -226,8 +235,8 @@
                 android:layout_weight="1"
                 android:text="6 months"
                 android:id="@+id/input_6_months"
-                android:paddingLeft="16dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_medium"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
 
@@ -236,8 +245,8 @@
                 android:layout_weight="1"
                 android:text="1 year"
                 android:id="@+id/input_1_year"
-                android:paddingLeft="16dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_medium"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorTextSecondary"
                 android:layout_height="wrap_content" />
         </RadioGroup>
@@ -248,13 +257,14 @@
         <Button
                 android:id="@+id/register_button"
                 android:layout_below="@+id/input_layout_mobile"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="@dimen/margin_phone_layout_login"
                 android:textStyle="bold"
+                android:textSize="@dimen/text_size_small"
                 android:background="@color/colorPrimaryDark"
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="@dimen/margin_phone_layout_login"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif"
@@ -264,7 +274,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_size_small"
                 android:layout_below="@+id/register_button"
                 android:id="@+id/login_text_view"
                 android:textColor="@color/colorTextSecondary"

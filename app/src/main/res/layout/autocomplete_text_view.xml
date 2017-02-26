@@ -7,7 +7,7 @@
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:textColor="?android:attr/textColorAlertDialogListItem"
     android:gravity="center_vertical"
-    android:paddingLeft="14dip"
-    android:paddingRight="14dip"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
     android:ellipsize="marquee"
     />
