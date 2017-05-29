@@ -16,7 +16,7 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/camera_action_layout_height"
-        android:background="@color/materialize_primary_dark"
+        android:background="@color/colorPrimaryDark"
         android:layout_gravity="center">
 
         <ImageButton

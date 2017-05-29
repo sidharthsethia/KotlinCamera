@@ -1,4 +1,4 @@
-package com.medcords.mhcpanel.activities;
+package com.medcords.mhcpanel.utilities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.medcords.mhcpanel.R;
+import com.medcords.mhcpanel.activities.CameraActivity;
 import com.medcords.mhcpanel.utilities.Utility;
 
 import java.io.File;

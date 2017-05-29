@@ -15,7 +15,7 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/camera_action_layout_height"
-        android:background="@color/materialize_primary_dark"
+        android:background="@color/colorPrimaryDark"
         android:layout_gravity="center">
 
         <ImageButton
@@ -150,7 +150,7 @@
                     android:gravity="center"
                     android:textSize="@dimen/text_size_small"
                     android:textStyle="bold"
-                    android:textColor="@color/materialize_primary_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_toRightOf="@+id/preview"
                     android:layout_alignTop="@+id/preview"
                     android:layout_marginLeft="@dimen/indicator_margin_left"
